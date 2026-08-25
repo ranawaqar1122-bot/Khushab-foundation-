@@ -1,125 +1,1518 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>خوشاب فاؤنڈیشن — فنڈ مینجمنٹ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>خوشاب فاؤنڈیشن — فنڈ مینجمنٹ سسٹم</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7fb;color:#172033}
-header{background:linear-gradient(135deg,#123b2a,#1d6b49);color:white;padding:22px 16px;text-align:center}
-header h1{margin:0 0 6px;font-size:28px} header p{margin:0;opacity:.9}
-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:12px;background:white;box-shadow:0 2px 8px #0001}
-button{border:0;border-radius:9px;padding:10px 15px;cursor:pointer;font-weight:700;background:#1d6b49;color:white}
-button.secondary{background:#e8edf2;color:#172033} button.danger{background:#b83232}
-main{max-width:1150px;margin:20px auto;padding:0 12px}.tab{display:none}.tab.active{display:block}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:18px}
-.card,.panel{background:white;border-radius:14px;padding:18px;box-shadow:0 3px 14px #0000000d}
-.card b{font-size:25px;display:block;margin-top:6px}.muted{color:#667085}
-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-label{font-weight:700;font-size:14px}input,select{width:100%;margin-top:6px;padding:11px;border:1px solid #ccd3dc;border-radius:8px;font-size:15px}
-.form-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
-.table-wrap{overflow:auto;margin-top:14px}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:9px;border-bottom:1px solid #e5e7eb;text-align:center}th{background:#f0f5f2}
-.badge{padding:4px 8px;border-radius:20px;background:#e7f5ed;color:#166534}.actions button{margin:2px;padding:7px 9px}
-.search{margin-bottom:12px}
-#idcard{max-width:430px;margin:20px auto;padding:24px;border-radius:18px;background:linear-gradient(145deg,#fff,#edf7f1);border:2px solid #1d6b49;text-align:center}
-#idcard .logo{font-size:22px;font-weight:900;color:#1d6b49}#idcard h2{margin:12px 0}#idcard .total{font-size:30px;font-weight:900;color:#123b2a}
-footer{text-align:center;color:#667085;padding:30px}
-@media print{nav,header,main>.tab:not(#cardTab),footer{display:none!important}#cardTab{display:block!important}.no-print{display:none!important}}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:#f4f7fb;
+    color:#17202a;
+    min-height:100vh;
+}
+
+button,input,select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+header{
+    background:linear-gradient(135deg,#062b2b,#075e54,#0b8175);
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.logo{
+    width:75px;
+    height:75px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    background:white;
+    color:#075e54;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+header h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+header p{
+    opacity:.9;
+    font-size:16px;
+}
+
+nav{
+    background:white;
+    padding:12px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.nav-btn{
+    border:0;
+    background:#062b2b;
+    color:white;
+    padding:11px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.nav-btn:hover{
+    transform:translateY(-2px);
+    background:#075e54;
+}
+
+.nav-btn.light{
+    background:#edf7f5;
+    color:#075e54;
+}
+
+main{
+    max-width:1200px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.hero{
+    background:white;
+    border-radius:22px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
+    margin-bottom:25px;
+}
+
+.hero h2{
+    color:#075e54;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#667085;
+    line-height:1.9;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    text-align:center;
+    border:1px solid #e8eef2;
+}
+
+.card-icon{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    color:#667085;
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.card strong{
+    color:#075e54;
+    font-size:27px;
+}
+
+.panel{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.panel h2{
+    color:#075e54;
+    margin-bottom:18px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-weight:bold;
+    color:#344054;
+}
+
+input,select{
+    width:100%;
+    padding:13px;
+    border:1px solid #d0d5dd;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+    background:white;
+}
+
+input:focus,select:focus{
+    border-color:#075e54;
+    box-shadow:0 0 0 3px rgba(7,94,84,.1);
+}
+
+.primary{
+    background:#075e54;
+    color:white;
+    border:0;
+    padding:13px 20px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.primary:hover{
+    background:#064c45;
+}
+
+.danger{
+    background:#c62828;
+    color:white;
+    border:0;
+    padding:8px 12px;
+    border-radius:8px;
+}
+
+.secondary{
+    background:#e8f3f1;
+    color:#075e54;
+    border:0;
+    padding:10px 15px;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+th{
+    background:#075e54;
+    color:white;
+    padding:13px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #eaecf0;
+    text-align:center;
+}
+
+tr:hover{
+    background:#f8fbfa;
+}
+
+.badge{
+    padding:5px 10px;
+    border-radius:20px;
+    background:#e7f6ef;
+    color:#067647;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.search{
+    margin-bottom:15px;
+}
+
+.login-overlay{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#031d1d,#075e54);
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-box{
+    background:white;
+    width:100%;
+    max-width:420px;
+    padding:35px;
+    border-radius:24px;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+    text-align:center;
+}
+
+.login-logo{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.login-box h2{
+    color:#075e54;
+    margin-bottom:7px;
+}
+
+.login-box p{
+    color:#667085;
+    margin-bottom:25px;
+}
+
+.login-box .form-group{
+    text-align:right;
+    margin-bottom:15px;
+}
+
+.login-btn{
+    width:100%;
+    margin-top:8px;
+}
+
+.error{
+    color:#c62828;
+    margin-top:12px;
+    display:none;
+    font-weight:bold;
+}
+
+.dashboard{
+    display:none;
+}
+
+.id-card{
+    max-width:450px;
+    margin:20px auto;
+    border-radius:22px;
+    overflow:hidden;
+    background:white;
+    box-shadow:0 10px 35px rgba(0,0,0,.15);
+    border:1px solid #dce5e8;
+}
+
+.id-top{
+    background:linear-gradient(135deg,#062b2b,#075e54,#0b8175);
+    color:white;
+    padding:22px;
+    text-align:center;
+}
+
+.id-top h2{
+    margin-bottom:5px;
+}
+
+.id-body{
+    padding:22px;
+}
+
+.id-row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:11px 0;
+    border-bottom:1px solid #eee;
+}
+
+.id-row:last-child{
+    border-bottom:0;
+}
+
+.id-label{
+    color:#667085;
+}
+
+.id-value{
+    font-weight:bold;
+}
+
+.total-box{
+    margin-top:18px;
+    background:#eaf7f4;
+    color:#075e54;
+    padding:16px;
+    border-radius:13px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.empty{
+    text-align:center;
+    color:#98a2b3;
+    padding:25px;
+}
+
+footer{
+    text-align:center;
+    padding:30px 15px;
+    color:#667085;
+}
+
+.hidden{
+    display:none !important;
+}
+
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    header h1{
+        font-size:25px;
+    }
+
+    .hero{
+        padding:25px 18px;
+    }
+
+    .hero h2{
+        font-size:22px;
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .card{
+        padding:15px 8px;
+    }
+
+    .card strong{
+        font-size:21px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .panel{
+        padding:18px;
+    }
+
+    nav{
+        gap:6px;
+    }
+
+    .nav-btn{
+        padding:9px 11px;
+        font-size:13px;
+    }
+}
+
+@media print{
+    body *{
+        visibility:hidden;
+    }
+
+    #printCard,
+    #printCard *{
+        visibility:visible;
+    }
+
+    #printCard{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+    }
+}
 </style>
 </head>
+
 <body>
-<header><h1>خوشاب فاؤنڈیشن</h1><p>فنڈ مینجمنٹ اور ممبران کا سالانہ ریکارڈ</p></header>
+
+<!-- LOGIN -->
+<div class="login-overlay" id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="login-logo">🕌</div>
+
+        <h2>خوشاب فاؤنڈیشن</h2>
+        <p>ایڈمن پینل میں خوش آمدید</p>
+
+        <div class="form-group">
+            <label>ایڈمن یوزرنیم</label>
+            <input id="loginUser" type="text" placeholder="Username">
+        </div>
+
+        <div class="form-group">
+            <label>پاسورڈ</label>
+            <input id="loginPass" type="password" placeholder="Password">
+        </div>
+
+        <button class="primary login-btn" onclick="login()">
+            🔐 لاگ اِن کریں
+        </button>
+
+        <div class="error" id="loginError">
+            یوزرنیم یا پاسورڈ غلط ہے
+        </div>
+
+    </div>
+</div>
+
+
+<!-- MAIN WEBSITE -->
+
+<header>
+
+    <div class="logo">🤝</div>
+
+    <h1>خوشاب فاؤنڈیشن</h1>
+
+    <p>فنڈ مینجمنٹ اور ممبران کا ریکارڈ سسٹم</p>
+
+</header>
+
+
 <nav>
-<button onclick="showTab('dashboard')">ڈیش بورڈ</button>
-<button onclick="showTab('members')">ممبران</button>
-<button onclick="showTab('funds')">فنڈ انٹری</button>
-<button onclick="showTab('report')">سالانہ رپورٹ</button>
-<button onclick="showTab('cardTab')">ID کارڈ</button> 
-  <a href="admin/index.html" style="text-decoration:none;">
-  <button type="button">ایڈمن پینل</button>
-</a>
+
+    <button class="nav-btn" onclick="showSection('home')">
+        🏠 مین پیج
+    </button>
+
+    <button class="nav-btn" onclick="showSection('members')">
+        👥 ممبران
+    </button>
+
+    <button class="nav-btn" onclick="showSection('funds')">
+        💰 فنڈ ریکارڈ
+    </button>
+
+    <button class="nav-btn" onclick="showSection('idcard')">
+        🪪 ID کارڈ
+    </button>
+
+    <button class="nav-btn light" onclick="logout()">
+        🚪 لاگ آؤٹ
+    </button>
+
 </nav>
-<main>
-<section id="dashboard" class="tab active">
-<div class="cards">
-<div class="card">کل ممبران<b id="statMembers">0</b></div>
-<div class="card">اس سال کا فنڈ<b id="statYear">0</b></div>
-<div class="card">اس مہینے کا فنڈ<b id="statMonth">0</b></div>
-<div class="card">کل فنڈ انٹریز<b id="statEntries">0</b></div>
-</div>
-<div class="panel"><h2>خوشاب فاؤنڈیشن</h2><p class="muted">یہ ویب ایپ آپ کے موبائل/کمپیوٹر میں ریکارڈ محفوظ کرتی ہے۔ بیک اپ کے لیے Export استعمال کریں۔</p>
-<button onclick="exportData()">ڈیٹا بیک اپ ڈاؤن لوڈ کریں</button>
-<button class="secondary" onclick="document.getElementById('importFile').click()">بیک اپ واپس لائیں</button>
-<input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)">
-</div>
+
+
+<main class="dashboard" id="dashboard">
+
+
+<!-- HOME -->
+
+<section id="home">
+
+    <div class="hero">
+
+        <h2>خوشاب فاؤنڈیشن میں خوش آمدید</h2>
+
+        <p>
+            یہ نظام ممبران، فنڈز، ماہانہ ادائیگیوں اور ID کارڈز
+            کا ریکارڈ آسان اور منظم طریقے سے رکھنے کے لیے بنایا گیا ہے۔
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-icon">👥</div>
+            <h3>کل ممبران</h3>
+            <strong id="totalMembers">0</strong>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">💰</div>
+            <h3>کل فنڈ</h3>
+            <strong id="totalFunds">0</strong>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📅</div>
+            <h3>ماہانہ ریکارڈ</h3>
+            <strong id="monthlyCount">0</strong>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🪪</div>
+            <h3>ID کارڈز</h3>
+            <strong id="cardCount">0</strong>
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h2>📌 سسٹم کی سہولیات</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">👤</div>
+                <h3>ممبر مینجمنٹ</h3>
+                <p>ممبران کی معلومات محفوظ کریں</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💳</div>
+                <h3>فنڈ مینجمنٹ</h3>
+                <p>ہر ادائیگی کا ریکارڈ رکھیں</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🪪</div>
+                <h3>ID کارڈ</h3>
+                <p>ممبر کا ID Card بنائیں</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>رپورٹ</h3>
+                <p>فنڈ کا مکمل حساب دیکھیں</p>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
-<section id="members" class="tab">
-<div class="panel"><h2>نیا ممبر شامل کریں</h2>
-<form onsubmit="addMember(event)">
-<label>نام<input id="mName" required></label>
-<label>مکمل ایڈریس<input id="mAddress"></label>
-<label>سٹی<input id="mCity"></label>
-<label>پاکستانی نمبر<input id="mPk"></label>
-<label>سعودی نمبر<input id="mSa"></label>
-<div class="form-actions"><button>ممبر محفوظ کریں</button></div>
-</form></div>
-<div class="panel"><h2>ممبران کی فہرست</h2><input class="search" id="memberSearch" placeholder="نام یا فون سے تلاش کریں" oninput="renderMembers()">
-<div class="table-wrap"><table><thead><tr><th>ID</th><th>نام</th><th>سٹی</th><th>پاکستانی نمبر</th><th>سعودی نمبر</th><th>کل فنڈ</th><th>عمل</th></tr></thead><tbody id="membersBody"></tbody></table></div></div>
+
+<!-- MEMBERS -->
+
+<section id="members" class="hidden">
+
+    <div class="panel">
+
+        <h2>👥 نیا ممبر شامل کریں</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>نام</label>
+                <input id="memberName" placeholder="ممبر کا نام">
+            </div>
+
+            <div class="form-group">
+                <label>شہر</label>
+                <input id="memberCity" placeholder="شہر">
+            </div>
+
+            <div class="form-group">
+                <label>پتہ</label>
+                <input id="memberAddress" placeholder="مکمل پتہ">
+            </div>
+
+            <div class="form-group">
+                <label>سعودی نمبر</label>
+                <input id="memberSaudi" placeholder="+966">
+            </div>
+
+            <div class="form-group">
+                <label>پاکستانی نمبر</label>
+                <input id="memberPakistan" placeholder="+92">
+            </div>
+
+            <div class="form-group">
+                <label>ممبر ID</label>
+                <input id="memberId" placeholder="مثلاً KF-001">
+            </div>
+
+            <div class="form-group full">
+                <button class="primary" onclick="addMember()">
+                    ➕ ممبر محفوظ کریں
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h2>📋 ممبران کا ریکارڈ</h2>
+
+        <input class="search"
+               id="memberSearch"
+               oninput="renderMembers()"
+               placeholder="🔎 ممبر کا نام یا ID تلاش کریں">
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>نام</th>
+                        <th>شہر</th>
+                        <th>سعودی نمبر</th>
+                        <th>پاکستانی نمبر</th>
+                        <th>عمل</th>
+                    </tr>
+                </thead>
+
+                <tbody id="membersTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
 </section>
 
-<section id="funds" class="tab">
-<div class="panel"><h2>ماہانہ فنڈ درج کریں</h2>
-<form onsubmit="addFund(event)">
-<label>ممبر<select id="fMember" required></select></label>
-<label>تاریخ<input id="fDate" type="date" required></label>
-<label>مہینہ<select id="fMonth"></select></label>
-<label>رقم<input id="fAmount" type="number" min="0" step="0.01" required></label>
-<label>فنڈ کی قسم<input id="fType" placeholder="مثلاً ماہانہ فنڈ"></label>
-<label>نوٹ<input id="fNote"></label>
-<div class="form-actions"><button>فنڈ محفوظ کریں</button></div>
-</form></div>
-<div class="panel"><h2>حالیہ فنڈ انٹریز</h2><div class="table-wrap"><table><thead><tr><th>تاریخ</th><th>ممبر</th><th>مہینہ</th><th>رقم</th><th>فنڈ</th><th>عمل</th></tr></thead><tbody id="fundsBody"></tbody></table></div></div>
+
+<!-- FUNDS -->
+
+<section id="funds" class="hidden">
+
+    <div class="panel">
+
+        <h2>💰 ماہانہ فنڈ درج کریں</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>ممبر</label>
+
+                <select id="fundMember"></select>
+
+            </div>
+
+            <div class="form-group">
+                <label>رقم</label>
+
+                <input id="fundAmount"
+                       type="number"
+                       placeholder="5000">
+            </div>
+
+            <div class="form-group">
+                <label>مہینہ</label>
+
+                <select id="fundMonth">
+
+                    <option>جنوری</option>
+                    <option>فروری</option>
+                    <option>مارچ</option>
+                    <option>اپریل</option>
+                    <option>مئی</option>
+                    <option>جون</option>
+                    <option>جولائی</option>
+                    <option>اگست</option>
+                    <option>ستمبر</option>
+                    <option>اکتوبر</option>
+                    <option>نومبر</option>
+                    <option>دسمبر</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>تاریخ</label>
+                <input id="fundDate" type="date">
+            </div>
+
+            <div class="form-group full">
+
+                <label>نوٹ</label>
+
+                <input id="fundNote"
+                       placeholder="مثلاً ماہانہ فنڈ">
+
+            </div>
+
+            <div class="form-group full">
+
+                <button class="primary" onclick="addFund()">
+                    💰 فنڈ محفوظ کریں
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h2>📊 موجودہ فنڈ ریکارڈ</h2>
+
+        <input class="search"
+               id="fundSearch"
+               oninput="renderFunds()"
+               placeholder="🔎 ممبر یا مہینہ تلاش کریں">
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>تاریخ</th>
+                        <th>ممبر</th>
+                        <th>رقم</th>
+                        <th>مہینہ</th>
+                        <th>نوٹ</th>
+                        <th>عمل</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="fundsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
 </section>
 
-<section id="report" class="tab">
-<div class="panel"><h2>پورے سال کی ماہانہ رپورٹ</h2>
-<label>سال<select id="reportYear" onchange="renderReport()"></select></label>
-<div class="table-wrap"><table><thead id="reportHead"></thead><tbody id="reportBody"></tbody></table></div></div>
+
+<!-- ID CARD -->
+
+<section id="idcard" class="hidden">
+
+    <div class="panel">
+
+        <h2>🪪 ممبر ID کارڈ</h2>
+
+        <select id="cardMember"
+                onchange="showCard()">
+
+        </select>
+
+        <div id="printCard"></div>
+
+    </div>
+
 </section>
 
-<section id="cardTab" class="tab">
-<div class="panel no-print"><h2>ID کارڈ</h2><label>ممبر<select id="cardMember" onchange="renderCard()"></select></label></div>
-<div id="idcard">
-<div class="logo">خوشاب فاؤنڈیشن</div><div>ممبرشپ / فنڈ ریکارڈ</div>
-<h2 id="cName">—</h2><p>ID: <b id="cId">—</b></p><p>سٹی: <span id="cCity">—</span></p><p>سعودی نمبر: <span id="cSa">—</span></p><p>پاکستانی نمبر: <span id="cPk">—</span></p>
-<hr><div>اب تک جمع شدہ کل فنڈ</div><div class="total" id="cTotal">0</div>
-<button class="no-print" onclick="window.print()">ID کارڈ پرنٹ کریں</button>
-</div>
-</section>
+
 </main>
-<footer>خوشاب فاؤنڈیشن — Fund Management System</footer>
+
+
+<footer>
+
+    © 2026 خوشاب فاؤنڈیشن — Fund Management System
+
+</footer>
+
+
 <script>
-const months=["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر"];
-let data=JSON.parse(localStorage.getItem("khushabFoundation")||'{"members":[],"funds":[]}');
-const save=()=>localStorage.setItem("khushabFoundation",JSON.stringify(data));
-const money=n=>new Intl.NumberFormat("en-US",{maximumFractionDigits:2}).format(n||0);
-function showTab(id){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");refresh()}
-function memberTotal(id){return data.funds.filter(f=>f.memberId===id).reduce((s,f)=>s+Number(f.amount),0)}
-function addMember(e){e.preventDefault();const id="KF-"+String(data.members.length+1).padStart(4,"0");data.members.push({id,name:mName.value,address:mAddress.value,city:mCity.value,pk:mPk.value,sa:mSa.value});save();e.target.reset();refresh();alert("ممبر محفوظ ہوگیا: "+id)}
-function addFund(e){e.preventDefault();if(!data.members.length)return alert("پہلے ممبر شامل کریں");data.funds.push({id:Date.now(),memberId:fMember.value,date:fDate.value,month:Number(fMonth.value),amount:Number(fAmount.value),type:fType.value,note:fNote.value});save();e.target.reset();fDate.value=new Date().toISOString().slice(0,10);refresh();alert("فنڈ محفوظ ہوگیا")}
-function deleteMember(id){if(confirm("یہ ممبر اور اس کا فنڈ ریکارڈ حذف کریں؟")){data.members=data.members.filter(m=>m.id!==id);data.funds=data.funds.filter(f=>f.memberId!==id);save();refresh()}}
-function deleteFund(id){if(confirm("یہ فنڈ انٹری حذف کریں؟")){data.funds=data.funds.filter(f=>f.id!==id);save();refresh()}}
-function renderMembers(){let q=(memberSearch.value||"").toLowerCase();membersBody.innerHTML=data.members.filter(m=>(m.name+" "+m.pk+" "+m.sa).toLowerCase().includes(q)).map(m=>`<tr><td>${m.id}</td><td>${m.name}</td><td>${m.city||""}</td><td>${m.pk||""}</td><td>${m.sa||""}</td><td>${money(memberTotal(m.id))}</td><td class="actions"><button onclick="selectCard('${m.id}')">ID</button><button class="danger" onclick="deleteMember('${m.id}')">حذف</button></td></tr>`).join("")||'<tr><td colspan="7">ابھی کوئی ممبر نہیں</td></tr>'}
-function fillSelects(){const opts=data.members.map(m=>`<option value="${m.id}">${m.id} — ${m.name}</option>`).join("");fMember.innerHTML=opts;cardMember.innerHTML=opts||'<option>کوئی ممبر نہیں</option>';fMonth.innerHTML=months.map((m,i)=>`<option value="${i}">${m}</option>`).join("");let y=new Date().getFullYear();reportYear.innerHTML=[y-1,y,y+1].map(x=>`<option>${x}</option>`).join("");}
-function renderFunds(){fundsBody.innerHTML=[...data.funds].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,100).map(f=>{let m=data.members.find(x=>x.id===f.memberId);return `<tr><td>${f.date}</td><td>${m?m.name:"—"}</td><td>${months[f.month]}</td><td>${money(f.amount)}</td><td>${f.type||""}</td><td><button class="danger" onclick="deleteFund(${f.id})">حذف</button></td></tr>`}).join("")||'<tr><td colspan="6">کوئی انٹری نہیں</td></tr>'}
-function renderReport(){let y=Number(reportYear.value);reportHead.innerHTML="<tr><th>ممبر</th>"+months.map(x=>`<th>${x}</th>`).join("")+"<th>سالانہ ٹوٹل</th></tr>";reportBody.innerHTML=data.members.map(m=>{let vals=months.map((_,i)=>data.funds.filter(f=>f.memberId===m.id&&new Date(f.date).getFullYear()===y&&f.month===i).reduce((s,f)=>s+Number(f.amount),0));return `<tr><td>${m.name}</td>${vals.map(v=>`<td>${money(v)}</td>`).join("")}<td><b>${money(vals.reduce((a,b)=>a+b,0))}</b></td></tr>`}).join("")||'<tr><td colspan="14">کوئی ریکارڈ نہیں</td></tr>'}
-function renderCard(){let m=data.members.find(x=>x.id===cardMember.value);if(!m){cName.textContent="—";cId.textContent="—";cTotal.textContent="0";return}cName.textContent=m.name;cId.textContent=m.id;cCity.textContent=m.city||"—";cSa.textContent=m.sa||"—";cPk.textContent=m.pk||"—";cTotal.textContent=money(memberTotal(m.id))}
-function selectCard(id){cardMember.value=id;showTab("cardTab")}
-function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="khushab-foundation-backup.json";a.click()}
-function importData(e){const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();refresh();alert("بیک اپ بحال ہوگیا")}catch{alert("فائل درست نہیں")}};r.readAsText(file)}
-function refresh(){fillSelects();renderMembers();renderFunds();renderReport();renderCard();let y=new Date().getFullYear(),mo=new Date().getMonth();statMembers.textContent=data.members.length;statYear.textContent=money(data.funds.filter(f=>new Date(f.date).getFullYear()===y).reduce((s,f)=>s+Number(f.amount),0));statMonth.textContent=money(data.funds.filter(f=>new Date(f.date).getFullYear()===y&&f.month===mo).reduce((s,f)=>s+Number(f.amount),0));statEntries.textContent=data.funds.length}
-fDate.value=new Date().toISOString().slice(0,10);refresh();
+
+/* =========================
+   LOGIN
+========================= */
+
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "123456";
+
+function login(){
+
+    const user =
+        document.getElementById("loginUser").value.trim();
+
+    const pass =
+        document.getElementById("loginPass").value;
+
+    if(user === ADMIN_USER && pass === ADMIN_PASS){
+
+        document.getElementById("loginScreen")
+            .style.display = "none";
+
+        document.getElementById("dashboard")
+            .style.display = "block";
+
+        loadAll();
+
+    }else{
+
+        document.getElementById("loginError")
+            .style.display = "block";
+
+    }
+}
+
+
+function logout(){
+
+    document.getElementById("dashboard")
+        .style.display = "none";
+
+    document.getElementById("loginScreen")
+        .style.display = "flex";
+
+    document.getElementById("loginUser").value = "";
+    document.getElementById("loginPass").value = "";
+
+}
+
+
+/* ENTER KEY LOGIN */
+
+document.getElementById("loginPass")
+.addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
+        login();
+    }
+
+});
+
+
+/* =========================
+   DATA
+========================= */
+
+let members =
+    JSON.parse(localStorage.getItem("kf_members") || "[]");
+
+let funds =
+    JSON.parse(localStorage.getItem("kf_funds") || "[]");
+
+
+function saveData(){
+
+    localStorage.setItem(
+        "kf_members",
+        JSON.stringify(members)
+    );
+
+    localStorage.setItem(
+        "kf_funds",
+        JSON.stringify(funds)
+    );
+
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+function showSection(section){
+
+    const sections =
+        ["home","members","funds","idcard"];
+
+    sections.forEach(id => {
+
+        document.getElementById(id)
+            .classList.add("hidden");
+
+    });
+
+    document.getElementById(section)
+        .classList.remove("hidden");
+
+    loadAll();
+
+}
+
+
+/* =========================
+   MEMBERS
+========================= */
+
+function addMember(){
+
+    const name =
+        document.getElementById("memberName").value.trim();
+
+    const city =
+        document.getElementById("memberCity").value.trim();
+
+    const address =
+        document.getElementById("memberAddress").value.trim();
+
+    const saudi =
+        document.getElementById("memberSaudi").value.trim();
+
+    const pakistan =
+        document.getElementById("memberPakistan").value.trim();
+
+    let id =
+        document.getElementById("memberId").value.trim();
+
+    if(!name){
+
+        alert("براہ کرم ممبر کا نام لکھیں");
+        return;
+
+    }
+
+    if(!id){
+
+        id = "KF-" +
+             String(members.length + 1)
+             .padStart(3,"0");
+
+    }
+
+    if(members.some(m => m.id === id)){
+
+        alert("یہ ممبر ID پہلے سے موجود ہے");
+        return;
+
+    }
+
+    members.push({
+
+        id,
+        name,
+        city,
+        address,
+        saudi,
+        pakistan,
+        created:new Date().toISOString()
+
+    });
+
+    saveData();
+
+    alert("ممبر کامیابی سے محفوظ ہوگیا");
+
+    document.getElementById("memberName").value = "";
+    document.getElementById("memberCity").value = "";
+    document.getElementById("memberAddress").value = "";
+    document.getElementById("memberSaudi").value = "";
+    document.getElementById("memberPakistan").value = "";
+    document.getElementById("memberId").value = "";
+
+    loadAll();
+
+}
+
+
+function renderMembers(){
+
+    const tbody =
+        document.getElementById("membersTable");
+
+    const search =
+        document.getElementById("memberSearch")
+        .value
+        .toLowerCase();
+
+    const filtered =
+        members.filter(m =>
+
+            m.name.toLowerCase().includes(search) ||
+            m.id.toLowerCase().includes(search) ||
+            (m.city || "").toLowerCase().includes(search)
+
+        );
+
+    if(filtered.length === 0){
+
+        tbody.innerHTML =
+            `<tr><td colspan="6" class="empty">
+             ابھی کوئی ممبر موجود نہیں
+             </td></tr>`;
+
+        return;
+
+    }
+
+    tbody.innerHTML =
+        filtered.map(m => `
+
+        <tr>
+
+            <td>
+                <span class="badge">${escapeHtml(m.id)}</span>
+            </td>
+
+            <td>${escapeHtml(m.name)}</td>
+
+            <td>${escapeHtml(m.city || "-")}</td>
+
+            <td>${escapeHtml(m.saudi || "-")}</td>
+
+            <td>${escapeHtml(m.pakistan || "-")}</td>
+
+            <td>
+
+                <button class="secondary"
+                        onclick="selectCard('${m.id}')">
+                    🪪 ID
+                </button>
+
+                <button class="danger"
+                        onclick="deleteMember('${m.id}')">
+                    حذف
+                </button>
+
+            </td>
+
+        </tr>
+
+    `).join("");
+
+}
+
+
+function deleteMember(id){
+
+    if(!confirm("کیا آپ واقعی یہ ممبر حذف کرنا چاہتے ہیں؟")){
+        return;
+    }
+
+    members =
+        members.filter(m => m.id !== id);
+
+    funds =
+        funds.filter(f => f.memberId !== id);
+
+    saveData();
+
+    loadAll();
+
+}
+
+
+/* =========================
+   FUNDS
+========================= */
+
+function updateMemberSelects(){
+
+    const fundSelect =
+        document.getElementById("fundMember");
+
+    const cardSelect =
+        document.getElementById("cardMember");
+
+    const options = members.map(m =>
+
+        `<option value="${escapeHtml(m.id)}">
+            ${escapeHtml(m.name)} — ${escapeHtml(m.id)}
+        </option>`
+
+    ).join("");
+
+    fundSelect.innerHTML =
+        options ||
+        `<option value="">پہلے ممبر شامل کریں</option>`;
+
+    cardSelect.innerHTML =
+        options ||
+        `<option value="">پہلے ممبر شامل کریں</option>`;
+
+}
+
+
+function addFund(){
+
+    const memberId =
+        document.getElementById("fundMember").value;
+
+    const amount =
+        Number(document.getElementById("fundAmount").value);
+
+    const month =
+        document.getElementById("fundMonth").value;
+
+    const date =
+        document.getElementById("fundDate").value;
+
+    const note =
+        document.getElementById("fundNote").value.trim();
+
+    if(!memberId){
+
+        alert("براہ کرم ممبر منتخب کریں");
+        return;
+
+    }
+
+    if(!amount || amount <= 0){
+
+        alert("براہ کرم درست رقم درج کریں");
+        return;
+
+    }
+
+    funds.push({
+
+        id:Date.now(),
+        memberId,
+        amount,
+        month,
+        date:date || new Date().toISOString().slice(0,10),
+        note
+
+    });
+
+    saveData();
+
+    alert("فنڈ کامیابی سے محفوظ ہوگیا");
+
+    document.getElementById("fundAmount").value = "";
+    document.getElementById("fundNote").value = "";
+
+    loadAll();
+
+}
+
+
+function renderFunds(){
+
+    const tbody =
+        document.getElementById("fundsTable");
+
+    const search =
+        document.getElementById("fundSearch")
+        .value
+        .toLowerCase();
+
+    const filtered =
+        funds.filter(f => {
+
+            const member =
+                members.find(m => m.id === f.memberId);
+
+            const name =
+                member ? member.name : "";
+
+            return (
+                name.toLowerCase().includes(search) ||
+                f.month.toLowerCase().includes(search)
+            );
+
+        });
+
+    if(filtered.length === 0){
+
+        tbody.innerHTML =
+            `<tr><td colspan="6" class="empty">
+             ابھی کوئی فنڈ ریکارڈ موجود نہیں
+             </td></tr>`;
+
+        return;
+
+    }
+
+    tbody.innerHTML =
+        filtered.slice().reverse().map(f => {
+
+            const member =
+                members.find(m => m.id === f.memberId);
+
+            const name =
+                member ? member.name : "نامعلوم";
+
+            return `
+
+            <tr>
+
+                <td>${escapeHtml(f.date)}</td>
+
+                <td>${escapeHtml(name)}</td>
+
+                <td>
+                    <strong>
+                    ${Number(f.amount).toLocaleString()}
+                    </strong>
+                </td>
+
+                <td>
+                    <span class="badge">
+                    ${escapeHtml(f.month)}
+                    </span>
+                </td>
+
+                <td>${escapeHtml(f.note || "-")}</td>
+
+                <td>
+
+                    <button class="danger"
+                            onclick="deleteFund(${f.id})">
+                        حذف
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function deleteFund(id){
+
+    if(!confirm("کیا آپ یہ فنڈ ریکارڈ حذف کرنا چاہتے ہیں؟")){
+        return;
+    }
+
+    funds =
+        funds.filter(f => f.id !== id);
+
+    saveData();
+
+    loadAll();
+
+}
+
+
+/* =========================
+   ID CARD
+========================= */
+
+function selectCard(id){
+
+    showSection("idcard");
+
+    document.getElementById("cardMember").value = id;
+
+    showCard();
+
+}
+
+
+function showCard(){
+
+    const id =
+        document.getElementById("cardMember").value;
+
+    const member =
+        members.find(m => m.id === id);
+
+    const container =
+        document.getElementById("printCard");
+
+    if(!member){
+
+        container.innerHTML =
+            `<div class="empty">
+             ممبر منتخب کریں
+             </div>`;
+
+        return;
+
+    }
+
+    const memberFunds =
+        funds.filter(f => f.memberId === member.id);
+
+    const total =
+        memberFunds.reduce(
+            (sum,f) => sum + Number(f.amount),
+            0
+        );
+
+    container.innerHTML = `
+
+        <div class="id-card">
+
+            <div class="id-top">
+
+                <div style="font-size:38px">🤝</div>
+
+                <h2>خوشاب فاؤنڈیشن</h2>
+
+                <div>
+                    ممبر شناختی کارڈ
+                </div>
+
+            </div>
+
+            <div class="id-body">
+
+                <div class="id-row">
+                    <span class="id-label">ممبر ID</span>
+                    <span class="id-value">
+                        ${escapeHtml(member.id)}
+                    </span>
+                </div>
+
+                <div class="id-row">
+                    <span class="id-label">نام</span>
+                    <span class="id-value">
+                        ${escapeHtml(member.name)}
+                    </span>
+                </div>
+
+                <div class="id-row">
+                    <span class="id-label">شہر</span>
+                    <span class="id-value">
+                        ${escapeHtml(member.city || "-")}
+                    </span>
+                </div>
+
+                <div class="id-row">
+                    <span class="id-label">سعودی نمبر</span>
+                    <span class="id-value">
+                        ${escapeHtml(member.saudi || "-")}
+                    </span>
+                </div>
+
+                <div class="id-row">
+                    <span class="id-label">پاکستانی نمبر</span>
+                    <span class="id-value">
+                        ${escapeHtml(member.pakistan || "-")}
+                    </span>
+                </div>
+
+                <div class="total-box">
+
+                    کل جمع شدہ فنڈ
+
+                    <br>
+
+                    ${total.toLocaleString()} روپے
+
+                </div>
+
+                <button
+                    class="primary"
+                    style="width:100%;margin-top:18px"
+                    onclick="window.print()">
+
+                    🖨️ ID کارڈ پرنٹ کریں
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   DASHBOARD STATS
+========================= */
+
+function updateStats(){
+
+    const total =
+        funds.reduce(
+            (sum,f) => sum + Number(f.amount),
+            0
+        );
+
+    document.getElementById("totalMembers")
+        .textContent = members.length;
+
+    document.getElementById("totalFunds")
+        .textContent = total.toLocaleString();
+
+    document.getElementById("monthlyCount")
+        .textContent = funds.length;
+
+    document.getElementById("cardCount")
+        .textContent = members.length;
+
+}
+
+
+/* =========================
+   LOAD EVERYTHING
+========================= */
+
+function loadAll(){
+
+    updateStats();
+
+    renderMembers();
+
+    renderFunds();
+
+    updateMemberSelects();
+
+    showCard();
+
+}
+
+
+/* =========================
+   SECURITY HELP
+========================= */
+
+function escapeHtml(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   DEFAULT DATE
+========================= */
+
+document.getElementById("fundDate").value =
+    new Date().toISOString().slice(0,10);
+
 </script>
+
 </body>
 </html>
