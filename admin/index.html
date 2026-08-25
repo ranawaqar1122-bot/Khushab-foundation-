@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>خوشاب فاؤنڈیشن — ایڈمن پینل</title>
+<title>خوشاب فاؤنڈیشن - ایڈمن پینل</title>
 
 <style>
 *{
@@ -14,291 +13,154 @@
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:#eef6f5;
-  color:#163b38;
+  background:linear-gradient(135deg,#004d40,#00796b,#003c35);
+  min-height:100vh;
+  color:#17332f;
 }
 
-button,input,select{
-  font:inherit;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* LOGIN */
-
-.login-wrap{
+.login-page{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:linear-gradient(135deg,#004d45,#08786d);
 }
 
 .login-box{
-  width:min(440px,100%);
+  width:100%;
+  max-width:500px;
   background:white;
-  border-radius:24px;
-  padding:32px;
-  box-shadow:0 15px 45px #003c3725;
+  border-radius:30px;
+  padding:35px 28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  text-align:center;
 }
 
 .logo{
-  font-size:58px;
-  text-align:center;
+  font-size:70px;
+  margin-bottom:10px;
 }
 
-.login-box h1{
-  text-align:center;
-  color:#075f56;
+h1{
+  margin:5px 0 10px;
+  color:#00695c;
+  font-size:36px;
 }
 
-.muted{
-  color:#71808a;
+.subtitle{
+  color:#6b7280;
+  font-size:19px;
+  margin-bottom:30px;
 }
 
 label{
   display:block;
+  text-align:right;
   font-weight:bold;
-  margin:12px 0 6px;
+  font-size:18px;
+  margin:18px 0 8px;
 }
 
-input,select{
+input{
   width:100%;
-  padding:13px;
-  border:1px solid #ccd8d7;
-  border-radius:12px;
-  background:white;
+  padding:17px;
+  border:2px solid #ddd;
+  border-radius:15px;
+  font-size:18px;
+  outline:none;
+  direction:ltr;
 }
 
-.btn{
+input:focus{
+  border-color:#00796b;
+}
+
+button{
+  width:100%;
+  margin-top:25px;
+  padding:17px;
   border:0;
-  border-radius:12px;
-  padding:12px 18px;
+  border-radius:15px;
+  background:#00695c;
+  color:white;
+  font-size:20px;
+  font-weight:bold;
   cursor:pointer;
+}
+
+button:hover{
+  background:#004d40;
+}
+
+#error{
+  display:none;
+  color:#c62828;
   font-weight:bold;
+  margin-top:18px;
+  font-size:17px;
 }
 
-.btn-primary{
-  background:#05675e;
-  color:white;
-}
-
-.btn-danger{
-  background:#c73535;
-  color:white;
-}
-
-.btn-light{
-  background:#eaf3f2;
-  color:#075f56;
-}
-
-.btn-warning{
-  background:#e9a52c;
-  color:white;
-}
-
-.msg{
-  text-align:center;
-  margin-top:12px;
-  font-weight:bold;
-}
-
-/* APP */
-
-.app{
+#panel{
+  display:none;
   min-height:100vh;
+  background:#f4f7f6;
 }
 
-.topbar{
-  background:linear-gradient(135deg,#004d45,#08786d);
+header{
+  background:linear-gradient(135deg,#004d40,#00796b);
   color:white;
-  padding:18px 22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
+  padding:25px;
+  text-align:center;
 }
 
-.topbar h1{
+header h1{
+  color:white;
   margin:0;
-  font-size:24px;
 }
 
 .container{
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
-  padding:20px;
+  padding:25px;
 }
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:14px;
-  margin-bottom:18px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
 }
 
-.stat{
+.card{
   background:white;
-  border-radius:18px;
-  padding:18px;
-  box-shadow:0 5px 20px #17443c12;
-}
-
-.stat b{
-  display:block;
-  font-size:27px;
-  color:#075f56;
-  margin-top:5px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.panel{
-  background:white;
-  border-radius:24px;
-  padding:20px;
-  box-shadow:0 8px 25px #17443c12;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-.actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:14px;
-}
-
-.table-wrap{
-  overflow:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:760px;
-}
-
-th,td{
-  padding:11px;
-  border-bottom:1px solid #e3eceb;
-  text-align:right;
-}
-
-th{
-  background:#f0f7f6;
-}
-
-.badge{
-  display:inline-block;
-  padding:4px 9px;
-  border-radius:20px;
-  background:#e2f2ef;
-  color:#075f56;
-  font-weight:bold;
-}
-
-.search{
-  margin-bottom:12px;
-}
-
-.idcard{
-  border:2px solid #08786d;
-  border-radius:20px;
-  padding:20px;
-  background:linear-gradient(145deg,#fff,#edf8f6);
-  max-width:430px;
-  margin:auto;
-}
-
-.idcard .brand{
-  text-align:center;
-  color:#075f56;
-  font-weight:bold;
-  font-size:22px;
-}
-
-.idcard .id{
-  font-size:14px;
-  color:#667;
-  margin:5px 0 15px;
-  text-align:center;
-}
-
-.idrow{
-  display:flex;
-  justify-content:space-between;
-  border-bottom:1px dashed #bbb;
-  padding:9px 0;
-}
-
-.idrow b{
-  color:#075f56;
-}
-
-.small{
-  font-size:12px;
-}
-
-footer{
-  text-align:center;
-  color:#758785;
   padding:25px;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  text-align:center;
 }
 
-@media(max-width:800px){
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .full{
-    grid-column:auto;
-  }
-
-  .topbar h1{
-    font-size:19px;
-  }
+.card .icon{
+  font-size:45px;
 }
 
-@media print{
+.card h2{
+  margin:10px 0;
+  color:#00695c;
+}
 
-  body{
-    background:white;
+.logout{
+  background:#c62828;
+  max-width:250px;
+  display:block;
+  margin:30px auto;
+}
+
+@media(max-width:600px){
+  h1{
+    font-size:30px;
   }
 
-  .topbar,
-  .stats-area,
-  .forms-area,
-  footer,
-  .no-print{
-    display:none!important;
-  }
-
-  .idcard{
-    box-shadow:none;
-    margin-top:20px;
+  .login-box{
+    padding:28px 20px;
   }
 }
 </style>
@@ -306,1546 +168,147 @@ footer{
 
 <body>
 
-<!-- LOGIN PAGE -->
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
 
-<section id="loginPage" class="login-wrap">
+  <div class="login-box">
 
-<div class="login-box">
+    <div class="logo">🕌</div>
 
-<div class="logo">🕌</div>
+    <h1>خوشاب فاؤنڈیشن</h1>
 
-<h1>خوشاب فاؤنڈیشن</h1>
+    <div class="subtitle">
+      ایڈمن پینل میں خوش آمدید
+    </div>
 
-<p class="muted" style="text-align:center">
-ایڈمن پینل میں خوش آمدید
-</p>
+    <label>ایڈمن یوزرنیم</label>
+    <input
+      type="text"
+      id="username"
+      placeholder="admin"
+      autocomplete="username"
+    >
 
-<label>
-ایڈمن یوزرنیم
-</label>
+    <label>پاسورڈ</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Khushab@2026"
+      autocomplete="current-password"
+    >
 
-<input
-id="loginUser"
-autocomplete="username"
-placeholder="Username"
->
+    <button onclick="login()">
+      🔐 لاگ اِن کریں
+    </button>
 
-<label>
-پاسورڈ
-</label>
+    <div id="error">
+      یوزرنیم یا پاسورڈ غلط ہے
+    </div>
 
-<input
-id="loginPass"
-type="password"
-autocomplete="current-password"
-placeholder="Password"
->
-
-<button
-class="btn btn-primary"
-style="width:100%;margin-top:18px"
-onclick="login()"
->
-🔐 لاگ اِن کریں
-</button>
-
-<div id="loginMsg" class="msg"></div>
-
-<p class="small muted" style="text-align:center;margin-top:18px">
-یہ GitHub Pages کے لیے مقامی سسٹم ہے۔
-</p>
-
-</div>
-
-</section>
-
-
-<!-- ADMIN APP -->
-
-<section id="app" class="app hidden">
-
-<header class="topbar">
-
-<h1>
-🕌 خوشاب فاؤنڈیشن — ایڈمن پینل
-</h1>
-
-<button
-class="btn btn-light"
-onclick="logout()"
->
-🚪 لاگ آؤٹ
-</button>
-
-</header>
-
-
-<main class="container">
-
-
-<!-- STATISTICS -->
-
-<div class="stats-area">
-
-<div class="cards">
-
-<div class="stat">
-👥 کل ممبران
-<b id="statMembers">0</b>
-</div>
-
-<div class="stat">
-💰 کل فنڈ
-<b id="statFunds">0</b>
-</div>
-
-<div class="stat">
-📅 آج کی ادائیگیاں
-<b id="statToday">0</b>
-</div>
-
-<div class="stat">
-🧾 کل ادائیگیاں
-<b id="statPayments">0</b>
-</div>
-
-</div>
+  </div>
 
 </div>
 
 
-<!-- FORMS -->
+<!-- ADMIN PANEL -->
+<div id="panel">
 
-<div class="grid forms-area">
+  <header>
+    <h1>خوشاب فاؤنڈیشن — ایڈمن پینل</h1>
+  </header>
 
+  <div class="container">
 
-<!-- MEMBER FORM -->
+    <div class="cards">
 
-<section class="panel">
+      <div class="card">
+        <div class="icon">👥</div>
+        <h2>ممبرز</h2>
+        <p>تمام ممبرز کا ریکارڈ</p>
+      </div>
 
-<h2>
-👤 نیا ممبر شامل کریں
-</h2>
+      <div class="card">
+        <div class="icon">💰</div>
+        <h2>فنڈز</h2>
+        <p>فنڈز کا مکمل ریکارڈ</p>
+      </div>
 
-<form
-id="memberForm"
-onsubmit="saveMember(event)"
->
+      <div class="card">
+        <div class="icon">💳</div>
+        <h2>ادائیگیاں</h2>
+        <p>تمام Payments</p>
+      </div>
 
-<input
-type="hidden"
-id="editMemberId"
->
+      <div class="card">
+        <div class="icon">🪪</div>
+        <h2>ID Card</h2>
+        <p>ممبر کا شناختی کارڈ</p>
+      </div>
 
-<div class="form-grid">
+    </div>
 
-<div>
+    <button class="logout" onclick="logout()">
+      🚪 لاگ آؤٹ
+    </button>
 
-<label>
-نام *
-</label>
-
-<input
-id="mName"
-required
->
-
-</div>
-
-
-<div>
-
-<label>
-والد کا نام
-</label>
-
-<input
-id="mFather"
->
+  </div>
 
 </div>
-
-
-<div>
-
-<label>
-شہر
-</label>
-
-<input
-id="mCity"
->
-
-</div>
-
-
-<div>
-
-<label>
-پتہ
-</label>
-
-<input
-id="mAddress"
->
-
-</div>
-
-
-<div>
-
-<label>
-سعودی نمبر
-</label>
-
-<input
-id="mSaudi"
-placeholder="+966..."
->
-
-</div>
-
-
-<div>
-
-<label>
-پاکستانی نمبر
-</label>
-
-<input
-id="mPakistan"
-placeholder="+92..."
->
-
-</div>
-
-
-<div>
-
-<label>
-فنڈ کی قسم
-</label>
-
-<select id="mFund">
-
-<option>
-ماہانہ فنڈ
-</option>
-
-<option>
-فلاحی فنڈ
-</option>
-
-<option>
-رمضان فنڈ
-</option>
-
-<option>
-ایمرجنسی فنڈ
-</option>
-
-<option>
-دیگر
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>
-ماہانہ رقم
-</label>
-
-<input
-id="mMonthly"
-type="number"
-min="0"
-value="0"
->
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button
-class="btn btn-primary"
-type="submit"
-id="memberSubmit"
->
-➕ ممبر محفوظ کریں
-</button>
-
-<button
-class="btn btn-light"
-type="button"
-onclick="resetMemberForm()"
->
-نیا فارم
-</button>
-
-</div>
-
-</form>
-
-</section>
-
-
-<!-- PAYMENT FORM -->
-
-<section class="panel">
-
-<h2>
-💳 فنڈ / ادائیگی درج کریں
-</h2>
-
-<form
-onsubmit="addPayment(event)"
->
-
-<div class="form-grid">
-
-<div class="full">
-
-<label>
-ممبر *
-</label>
-
-<select
-id="pMember"
-required
->
-</select>
-
-</div>
-
-
-<div>
-
-<label>
-رقم *
-</label>
-
-<input
-id="pAmount"
-type="number"
-min="1"
-required
->
-
-</div>
-
-
-<div>
-
-<label>
-تاریخ *
-</label>
-
-<input
-id="pDate"
-type="date"
-required
->
-
-</div>
-
-
-<div>
-
-<label>
-مہینہ
-</label>
-
-<input
-id="pMonth"
-type="month"
->
-
-</div>
-
-
-<div>
-
-<label>
-طریقہ
-</label>
-
-<select id="pMethod">
-
-<option>کیش</option>
-<option>بینک</option>
-<option>STC Pay</option>
-<option>JazzCash</option>
-<option>EasyPaisa</option>
-<option>دیگر</option>
-
-</select>
-
-</div>
-
-
-<div class="full">
-
-<label>
-نوٹ
-</label>
-
-<input
-id="pNote"
-placeholder="مثلاً جنوری 2026 فنڈ"
->
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button
-class="btn btn-primary"
-type="submit"
->
-💰 ادائیگی محفوظ کریں
-</button>
-
-</div>
-
-</form>
-
-</section>
-
-</div>
-
-
-<!-- MEMBERS -->
-
-<section
-class="panel"
-style="margin-top:18px"
->
-
-<h2>
-👥 ممبران
-</h2>
-
-<input
-class="search"
-id="memberSearch"
-oninput="renderMembers()"
-placeholder="🔎 نام، شہر یا نمبر سے تلاش کریں"
->
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>ID</th>
-<th>نام</th>
-<th>شہر</th>
-<th>سعودی نمبر</th>
-<th>فنڈ</th>
-<th>جمع شدہ</th>
-<th>ایکشن</th>
-
-</tr>
-
-</thead>
-
-<tbody id="memberTable"></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- PAYMENTS -->
-
-<section
-class="panel"
-style="margin-top:18px"
->
-
-<h2>
-🧾 ادائیگیوں کا ریکارڈ
-</h2>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>تاریخ</th>
-<th>ممبر</th>
-<th>رقم</th>
-<th>مہینہ</th>
-<th>طریقہ</th>
-<th>نوٹ</th>
-<th>ایکشن</th>
-
-</tr>
-
-</thead>
-
-<tbody id="paymentTable"></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- ID CARD -->
-
-<section
-class="panel print-area"
-style="margin-top:18px"
->
-
-<h2 class="no-print">
-🪪 ممبر ID کارڈ
-</h2>
-
-<div
-id="idcard"
-class="idcard"
->
-
-<div class="brand">
-🕌 خوشاب فاؤنڈیشن
-</div>
-
-<div class="id">
-ممبرشپ / فنڈ کارڈ
-</div>
-
-
-<div class="idrow">
-
-<span>
-ممبر ID
-</span>
-
-<b id="cId">
-—
-</b>
-
-</div>
-
-
-<div class="idrow">
-
-<span>
-نام
-</span>
-
-<b id="cName">
-—
-</b>
-
-</div>
-
-
-<div class="idrow">
-
-<span>
-شہر
-</span>
-
-<b id="cCity">
-—
-</b>
-
-</div>
-
-
-<div class="idrow">
-
-<span>
-فنڈ
-</span>
-
-<b id="cFund">
-—
-</b>
-
-</div>
-
-
-<div class="idrow">
-
-<span>
-کل جمع شدہ
-</span>
-
-<b id="cTotal">
-0
-</b>
-
-</div>
-
-
-<div class="idrow">
-
-<span>
-جاری ہونے کی تاریخ
-</span>
-
-<b id="cDate">
-—
-</b>
-
-</div>
-
-
-<div class="actions no-print">
-
-<button
-class="btn btn-primary"
-onclick="window.print()"
->
-🖨️ ID کارڈ پرنٹ کریں
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-</main>
-
-
-<footer>
-خوشاب فاؤنڈیشن — فنڈ مینجمنٹ سسٹم
-</footer>
-
-</section>
 
 
 <script>
 
-/* LOGIN */
-
-const LOGIN_USER = "admin";
-
-const LOGIN_PASS = "Khushab@2026";
-
-
-/* DATA */
-
-let members =
-JSON.parse(
-localStorage.getItem("khushab_members") || "[]"
-);
-
-let payments =
-JSON.parse(
-localStorage.getItem("khushab_payments") || "[]"
-);
-
-
-/* SAVE */
-
-function saveData(){
-
-localStorage.setItem(
-"khushab_members",
-JSON.stringify(members)
-);
-
-localStorage.setItem(
-"khushab_payments",
-JSON.stringify(payments)
-);
-
-}
-
-
-/* LOGIN */
-
 function login(){
 
-const u =
-document.getElementById("loginUser").value.trim();
+  const username =
+    document.getElementById("username").value.trim();
 
-const p =
-document.getElementById("loginPass").value;
+  const password =
+    document.getElementById("password").value;
 
-const msg =
-document.getElementById("loginMsg");
+  /*
+    نیا لاگ اِن:
+    Username: admin
+    Password: Khushab@2026
+  */
 
+  if(
+    username === "admin" &&
+    password === "Khushab@2026"
+  ){
 
-if(
-u === LOGIN_USER &&
-p === LOGIN_PASS
-){
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("panel").style.display="block";
 
-sessionStorage.setItem(
-"khushab_admin",
-"1"
-);
+    document.getElementById("error").style.display="none";
 
-showApp();
+    sessionStorage.setItem("khushab_admin","true");
 
-}else{
+  }else{
 
-msg.textContent =
-"❌ یوزرنیم یا پاسورڈ غلط ہے";
+    document.getElementById("error").style.display="block";
 
-msg.style.color =
-"#c73535";
-
+  }
 }
 
-}
-
-
-/* SHOW APP */
-
-function showApp(){
-
-document
-.getElementById("loginPage")
-.classList
-.add("hidden");
-
-document
-.getElementById("app")
-.classList
-.remove("hidden");
-
-renderAll();
-
-}
-
-
-/* LOGOUT */
 
 function logout(){
 
-sessionStorage.removeItem(
-"khushab_admin"
-);
+  sessionStorage.removeItem("khushab_admin");
 
-document
-.getElementById("app")
-.classList
-.add("hidden");
+  document.getElementById("panel").style.display="none";
+  document.getElementById("loginPage").style.display="flex";
 
-document
-.getElementById("loginPage")
-.classList
-.remove("hidden");
-
+  document.getElementById("username").value="";
+  document.getElementById("password").value="";
 }
 
 
-/* ID */
-
-function uid(){
-
-return "KF-" +
-Date.now()
-.toString()
-.slice(-7);
-
-}
-
-
-/* MONEY */
-
-function money(n){
-
-return Number(n || 0)
-.toLocaleString("en-US")
-+
-" ر.س";
-
-}
-
-
-/* MEMBER TOTAL */
-
-function memberTotal(id){
-
-return payments
-.filter(p => p.memberId === id)
-.reduce(
-(s,p) => s + Number(p.amount || 0),
-0
-);
-
-}
-
-
-/* SAVE MEMBER */
-
-function saveMember(e){
-
-e.preventDefault();
-
-const edit =
-document.getElementById("editMemberId").value;
-
-
-const data = {
-
-id:
-edit ||
-uid(),
-
-name:
-document.getElementById("mName").value.trim(),
-
-father:
-document.getElementById("mFather").value.trim(),
-
-city:
-document.getElementById("mCity").value.trim(),
-
-address:
-document.getElementById("mAddress").value.trim(),
-
-saudi:
-document.getElementById("mSaudi").value.trim(),
-
-pakistan:
-document.getElementById("mPakistan").value.trim(),
-
-fund:
-document.getElementById("mFund").value,
-
-monthly:
-Number(
-document.getElementById("mMonthly").value || 0
-),
-
-created:
-new Date().toISOString()
-
-};
-
-
-if(edit){
-
-const i =
-members.findIndex(
-x => x.id === edit
-);
-
-if(i >= 0){
-
-members[i] = data;
-
-}
-
-}else{
-
-members.unshift(data);
-
-}
-
-
-saveData();
-
-resetMemberForm();
-
-renderAll();
-
-alert(
-"✅ ممبر کامیابی سے محفوظ ہو گیا"
-);
-
-}
-
-
-/* RESET */
-
-function resetMemberForm(){
-
-document
-.getElementById("memberForm")
-.reset();
-
-document
-.getElementById("editMemberId")
-.value = "";
-
-document
-.getElementById("mMonthly")
-.value = "0";
-
-document
-.getElementById("memberSubmit")
-.textContent =
-"➕ ممبر محفوظ کریں";
-
-}
-
-
-/* EDIT MEMBER */
-
-function editMember(id){
-
-const m =
-members.find(
-x => x.id === id
-);
-
-if(!m)return;
-
-
-document
-.getElementById("editMemberId")
-.value = m.id;
-
-document
-.getElementById("mName")
-.value = m.name || "";
-
-document
-.getElementById("mFather")
-.value = m.father || "";
-
-document
-.getElementById("mCity")
-.value = m.city || "";
-
-document
-.getElementById("mAddress")
-.value = m.address || "";
-
-document
-.getElementById("mSaudi")
-.value = m.saudi || "";
-
-document
-.getElementById("mPakistan")
-.value = m.pakistan || "";
-
-document
-.getElementById("mFund")
-.value =
-m.fund || "ماہانہ فنڈ";
-
-document
-.getElementById("mMonthly")
-.value =
-m.monthly || 0;
-
-document
-.getElementById("memberSubmit")
-.textContent =
-"💾 تبدیلی محفوظ کریں";
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* DELETE MEMBER */
-
-function deleteMember(id){
-
-if(
-!confirm(
-"کیا آپ واقعی اس ممبر کو حذف کرنا چاہتے ہیں؟"
-)
-)return;
-
-
-members =
-members.filter(
-x => x.id !== id
-);
-
-payments =
-payments.filter(
-x => x.memberId !== id
-);
-
-
-saveData();
-
-renderAll();
-
-}
-
-
-/* ADD PAYMENT */
-
-function addPayment(e){
-
-e.preventDefault();
-
-
-const memberId =
-document.getElementById("pMember").value;
-
-
-if(!memberId)return;
-
-
-payments.unshift({
-
-id:uid(),
-
-memberId:
-
-memberId,
-
-amount:
-
-Number(
-document.getElementById("pAmount").value
-),
-
-date:
-
-document.getElementById("pDate").value,
-
-month:
-
-document.getElementById("pMonth").value,
-
-method:
-
-document.getElementById("pMethod").value,
-
-note:
-
-document.getElementById("pNote").value.trim()
-
-});
-
-
-saveData();
-
-e.target.reset();
-
-setToday();
-
-renderAll();
-
-
-alert(
-"✅ ادائیگی محفوظ ہو گئی"
-);
-
-}
-
-
-/* DELETE PAYMENT */
-
-function deletePayment(id){
-
-if(
-!confirm(
-"ادائیگی حذف کریں؟"
-)
-)return;
-
-
-payments =
-payments.filter(
-x => x.id !== id
-);
-
-saveData();
-
-renderAll();
-
-}
-
-
-/* MEMBERS TABLE */
-
-function renderMembers(){
-
-const q =
-document
-.getElementById("memberSearch")
-.value
-.toLowerCase();
-
-
-const rows =
-members.filter(
-m =>
-[
-m.name,
-m.city,
-m.saudi,
-m.pakistan,
-m.id
-]
-.join(" ")
-.toLowerCase()
-.includes(q)
-);
-
-
-document
-.getElementById("memberTable")
-.innerHTML =
-
-
-rows.length
-
-
-?
-
-
-rows.map(m => `
-
-<tr>
-
-<td>
-
-<span class="badge">
-${esc(m.id)}
-</span>
-
-</td>
-
-
-<td>
-
-<b>
-${esc(m.name)}
-</b>
-
-<div class="small muted">
-${esc(m.father || "")}
-</div>
-
-</td>
-
-
-<td>
-${esc(m.city || "-")}
-</td>
-
-
-<td>
-${esc(m.saudi || "-")}
-</td>
-
-
-<td>
-${esc(m.fund || "-")}
-</td>
-
-
-<td>
-
-<b>
-${money(memberTotal(m.id))}
-</b>
-
-</td>
-
-
-<td>
-
-<button
-class="btn btn-light"
-onclick="showCard('${m.id}')"
->
-🪪 ID
-</button>
-
-<button
-class="btn btn-warning"
-onclick="editMember('${m.id}')"
->
-✏️
-</button>
-
-<button
-class="btn btn-danger"
-onclick="deleteMember('${m.id}')"
->
-🗑️
-</button>
-
-</td>
-
-</tr>
-
-`).join("")
-
-
-:
-
-
-`
-
-<tr>
-
-<td
-colspan="7"
-style="text-align:center"
->
-ابھی کوئی ممبر موجود نہیں۔
-</td>
-
-</tr>
-
-`;
-
-}
-
-
-/* PAYMENTS TABLE */
-
-function renderPayments(){
-
-document
-.getElementById("paymentTable")
-.innerHTML =
-
-
-payments.length
-
-
-?
-
-
-payments.map(p => {
-
-const m =
-members.find(
-x => x.id === p.memberId
-);
-
-
-return `
-
-<tr>
-
-<td>
-${esc(p.date || "-")}
-</td>
-
-<td>
-${esc(m?.name || "حذف شدہ ممبر")}
-</td>
-
-<td>
-<b>
-${money(p.amount)}
-</b>
-</td>
-
-<td>
-${esc(p.month || "-")}
-</td>
-
-<td>
-${esc(p.method || "-")}
-</td>
-
-<td>
-${esc(p.note || "-")}
-</td>
-
-<td>
-
-<button
-class="btn btn-danger"
-onclick="deletePayment('${p.id}')"
->
-🗑️
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-}).join("")
-
-
-:
-
-
-`
-
-<tr>
-
-<td
-colspan="7"
-style="text-align:center"
->
-ابھی کوئی ادائیگی موجود نہیں۔
-</td>
-
-</tr>
-
-`;
-
-}
-
-
-/* STATS */
-
-function renderStats(){
-
-document
-.getElementById("statMembers")
-.textContent =
-members.length;
-
-
-document
-.getElementById("statFunds")
-.textContent =
-money(
-payments.reduce(
-(s,p) =>
-s +
-Number(p.amount || 0),
-0
-)
-);
-
-
-const today =
-new Date()
-.toISOString()
-.slice(0,10);
-
-
-document
-.getElementById("statToday")
-.textContent =
-money(
-
-payments
-.filter(
-p => p.date === today
-)
-.reduce(
-(s,p) =>
-s +
-Number(p.amount || 0),
-0
-)
-
-);
-
-
-document
-.getElementById("statPayments")
-.textContent =
-payments.length;
-
-}
-
-
-/* MEMBER SELECT */
-
-function renderMemberSelect(){
-
-const sel =
-document.getElementById("pMember");
-
-
-sel.innerHTML =
-
-
-members.length
-
-
-?
-
-
-'<option value="">ممبر منتخب کریں</option>' +
-
-members
-.map(
-m =>
-`
-<option value="${m.id}">
-${esc(m.name)}
- — ${m.id}
-</option>
-`
-)
-.join("")
-
-
-:
-
-
-'<option value="">پہلے ممبر شامل کریں</option>';
-
-}
-
-
-/* ID CARD */
-
-function showCard(id){
-
-const m =
-members.find(
-x => x.id === id
-);
-
-if(!m)return;
-
-
-document
-.getElementById("cId")
-.textContent =
-m.id;
-
-
-document
-.getElementById("cName")
-.textContent =
-m.name;
-
-
-document
-.getElementById("cCity")
-.textContent =
-m.city || "-";
-
-
-document
-.getElementById("cFund")
-.textContent =
-m.fund || "-";
-
-
-document
-.getElementById("cTotal")
-.textContent =
-money(
-memberTotal(id)
-);
-
-
-document
-.getElementById("cDate")
-.textContent =
-new Date()
-.toLocaleDateString("ur-PK");
-
-
-document
-.querySelector(".print-area")
-.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-
-/* RENDER ALL */
-
-function renderAll(){
-
-renderStats();
-
-renderMembers();
-
-renderPayments();
-
-renderMemberSelect();
-
-}
-
-
-/* TODAY */
-
-function setToday(){
-
-document
-.getElementById("pDate")
-.value =
-new Date()
-.toISOString()
-.slice(0,10);
-
-}
-
-
-/* ESCAPE */
-
-function esc(v){
-
-return String(v ?? "")
-.replace(
-/[&<>"']/g,
-
-c => ({
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-
-}[c])
-
-);
-
-}
-
-
-/* ENTER LOGIN */
-
-document
-.getElementById("loginPass")
-.addEventListener(
-"keydown",
-e => {
-
-if(e.key === "Enter"){
-login();
-}
-
-});
-
-
-/* START */
-
-setToday();
-
-
-if(
-sessionStorage.getItem(
-"khushab_admin"
-) === "1"
-){
-
-showApp();
+// اگر پہلے سے لاگ اِن ہے
+if(sessionStorage.getItem("khushab_admin")==="true"){
+
+  document.getElementById("loginPage").style.display="none";
+  document.getElementById("panel").style.display="block";
 
 }
 
