@@ -8,7 +8,723 @@
 <style>
 *{box-sizing:border-box}
 
+body{<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خوشاب فاؤنڈیشن — ایڈمن پینل</title>
+
+<style>
+*{box-sizing:border-box}
+
 body{
+    margin:0;
+    font-family:Tahoma,Arial,sans-serif;
+    background:#f3f6f8;
+    color:#172b2b;
+}
+
+header{
+    background:#062b2b;
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:30px;
+}
+
+header p{
+    margin:8px 0 0;
+    color:#d9eeee;
+}
+
+nav{
+    background:white;
+    padding:12px;
+    text-align:center;
+    box-shadow:0 2px 8px #0001;
+}
+
+nav a,button{
+    border:0;
+    background:#063b38;
+    color:white;
+    padding:11px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    text-decoration:none;
+    margin:4px;
+    font-size:15px;
+}
+
+nav a:hover,button:hover{
+    background:#0b5550;
+}
+
+.container{
+    max-width:1200px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 2px 10px #0001;
+}
+
+.card h2{
+    margin:5px 0;
+    font-size:30px;
+    color:#063b38;
+}
+
+.card p{
+    margin:0;
+    color:#666;
+}
+
+.section{
+    background:white;
+    padding:22px;
+    border-radius:12px;
+    margin-bottom:25px;
+    box-shadow:0 2px 10px #0001;
+}
+
+.section h2{
+    margin-top:0;
+    border-bottom:2px solid #e5eeee;
+    padding-bottom:12px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:5px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccd8d8;
+    border-radius:8px;
+    font-size:15px;
+    background:white;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:800px;
+}
+
+th,td{
+    border-bottom:1px solid #e4e8e8;
+    padding:12px;
+    text-align:center;
+}
+
+th{
+    background:#063b38;
+    color:white;
+}
+
+.delete{
+    background:#a91e1e;
+}
+
+.idbtn{
+    background:#315f8c;
+}
+
+.message{
+    padding:12px;
+    margin-top:12px;
+    border-radius:8px;
+    display:none;
+    background:#e6f5e9;
+    color:#14652a;
+}
+
+#idCard{
+    display:none;
+    max-width:450px;
+    margin:20px auto;
+    border:3px solid #063b38;
+    border-radius:18px;
+    padding:25px;
+    background:white;
+    text-align:center;
+}
+
+#idCard h2{
+    color:#063b38;
+}
+
+.id-number{
+    font-size:25px;
+    font-weight:bold;
+    color:#a07a16;
+}
+
+@media(max-width:900px){
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .form-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:600px){
+    .cards{grid-template-columns:1fr}
+    .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>خوشاب فاؤنڈیشن</h1>
+    <p>ایڈمن پینل — ممبران اور فنڈ مینجمنٹ سسٹم</p>
+</header>
+
+<nav>
+    <a href="../index.html">مین پیج</a>
+    <a href="#members">ممبران</a>
+    <a href="#funds">فنڈ انٹری</a>
+    <a href="#reports">رپورٹ</a>
+</nav>
+
+<div class="container">
+
+    <!-- DASHBOARD -->
+    <div class="cards">
+
+        <div class="card">
+            <p>کل ممبران</p>
+            <h2 id="totalMembers">0</h2>
+        </div>
+
+        <div class="card">
+            <p>کل فنڈ</p>
+            <h2 id="totalFund">0</h2>
+        </div>
+
+        <div class="card">
+            <p>اس ماہ کا فنڈ</p>
+            <h2 id="monthlyFund">0</h2>
+        </div>
+
+        <div class="card">
+            <p>فنڈ انٹریز</p>
+            <h2 id="totalEntries">0</h2>
+        </div>
+
+    </div>
+
+
+    <!-- MEMBER SECTION -->
+    <div class="section" id="members">
+
+        <h2>نیا ممبر شامل کریں</h2>
+
+        <div class="form-grid">
+
+            <div>
+                <label>نام</label>
+                <input id="memberName" type="text" placeholder="ممبر کا نام">
+            </div>
+
+            <div>
+                <label>مکمل ایڈریس</label>
+                <input id="memberAddress" type="text" placeholder="مکمل ایڈریس">
+            </div>
+
+            <div>
+                <label>سٹی</label>
+                <input id="memberCity" type="text" placeholder="شہر">
+            </div>
+
+            <div>
+                <label>پاکستانی نمبر</label>
+                <input id="pakNumber" type="text" placeholder="03XXXXXXXXX">
+            </div>
+
+            <div>
+                <label>سعودی نمبر</label>
+                <input id="saudiNumber" type="text" placeholder="+966XXXXXXXXX">
+            </div>
+
+        </div>
+
+        <button onclick="addMember()">ممبر محفوظ کریں</button>
+
+        <div class="message" id="memberMessage">
+            ممبر کامیابی سے محفوظ ہوگیا۔
+        </div>
+
+    </div>
+
+
+    <!-- MEMBER LIST -->
+    <div class="section">
+
+        <h2>ممبران کی فہرست</h2>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>نام</th>
+                        <th>سٹی</th>
+                        <th>پاکستانی نمبر</th>
+                        <th>سعودی نمبر</th>
+                        <th>کل فنڈ</th>
+                        <th>عمل</th>
+                    </tr>
+                </thead>
+
+                <tbody id="memberTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- FUND SECTION -->
+    <div class="section" id="funds">
+
+        <h2>ماہانہ فنڈ درج کریں</h2>
+
+        <div class="form-grid">
+
+            <div>
+                <label>ممبر</label>
+                <select id="fundMember"></select>
+            </div>
+
+            <div>
+                <label>تاریخ</label>
+                <input id="fundDate" type="date">
+            </div>
+
+            <div>
+                <label>مہینہ</label>
+                <select id="fundMonth">
+                    <option>جنوری</option>
+                    <option>فروری</option>
+                    <option>مارچ</option>
+                    <option>اپریل</option>
+                    <option>مئی</option>
+                    <option>جون</option>
+                    <option>جولائی</option>
+                    <option>اگست</option>
+                    <option>ستمبر</option>
+                    <option>اکتوبر</option>
+                    <option>نومبر</option>
+                    <option>دسمبر</option>
+                </select>
+            </div>
+
+            <div>
+                <label>رقم</label>
+                <input id="fundAmount" type="number" placeholder="5000">
+            </div>
+
+            <div>
+                <label>نوٹ</label>
+                <input id="fundNote" type="text" placeholder="مثلاً ماہانہ فنڈ">
+            </div>
+
+        </div>
+
+        <button onclick="addFund()">فنڈ محفوظ کریں</button>
+
+        <div class="message" id="fundMessage">
+            فنڈ کامیابی سے محفوظ ہوگیا۔
+        </div>
+
+    </div>
+
+
+    <!-- FUND REPORT -->
+    <div class="section" id="reports">
+
+        <h2>فنڈ کی رپورٹ</h2>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>تاریخ</th>
+                        <th>ممبر</th>
+                        <th>مہینہ</th>
+                        <th>رقم</th>
+                        <th>نوٹ</th>
+                        <th>عمل</th>
+                    </tr>
+                </thead>
+
+                <tbody id="fundTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ID CARD -->
+    <div class="section">
+
+        <h2>ممبر ID کارڈ</h2>
+
+        <div id="idCard">
+
+            <h2>خوشاب فاؤنڈیشن</h2>
+
+            <p>ممبر شناختی کارڈ</p>
+
+            <div class="id-number" id="cardId"></div>
+
+            <hr>
+
+            <h3 id="cardName"></h3>
+
+            <p id="cardCity"></p>
+
+            <p>
+                پاکستانی نمبر:
+                <span id="cardPak"></span>
+            </p>
+
+            <p>
+                سعودی نمبر:
+                <span id="cardSaudi"></span>
+            </p>
+
+            <h3>
+                کل جمع شدہ فنڈ:
+                <span id="cardFund"></span>
+            </h3>
+
+            <button onclick="printCard()">ID کارڈ پرنٹ کریں</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let members = JSON.parse(localStorage.getItem("khushab_members") || "[]");
+let funds = JSON.parse(localStorage.getItem("khushab_funds") || "[]");
+
+function saveData(){
+    localStorage.setItem("khushab_members", JSON.stringify(members));
+    localStorage.setItem("khushab_funds", JSON.stringify(funds));
+}
+
+function addMember(){
+
+    let name = document.getElementById("memberName").value.trim();
+
+    if(!name){
+        alert("براہ کرم ممبر کا نام لکھیں۔");
+        return;
+    }
+
+    let member = {
+        id: "KF-" + String(members.length + 1).padStart(4,"0"),
+        name:name,
+        address:document.getElementById("memberAddress").value,
+        city:document.getElementById("memberCity").value,
+        pak:document.getElementById("pakNumber").value,
+        saudi:document.getElementById("saudiNumber").value
+    };
+
+    members.push(member);
+
+    saveData();
+
+    document.getElementById("memberName").value="";
+    document.getElementById("memberAddress").value="";
+    document.getElementById("memberCity").value="";
+    document.getElementById("pakNumber").value="";
+    document.getElementById("saudiNumber").value="";
+
+    document.getElementById("memberMessage").style.display="block";
+
+    setTimeout(()=>{
+        document.getElementById("memberMessage").style.display="none";
+    },2500);
+
+    render();
+}
+
+
+function addFund(){
+
+    let memberId = document.getElementById("fundMember").value;
+    let amount = Number(document.getElementById("fundAmount").value);
+
+    if(!memberId){
+        alert("براہ کرم ممبر منتخب کریں۔");
+        return;
+    }
+
+    if(!amount || amount <= 0){
+        alert("براہ کرم فنڈ کی رقم لکھیں۔");
+        return;
+    }
+
+    let fund = {
+        id:Date.now(),
+        memberId:memberId,
+        date:document.getElementById("fundDate").value || new Date().toISOString().split("T")[0],
+        month:document.getElementById("fundMonth").value,
+        amount:amount,
+        note:document.getElementById("fundNote").value
+    };
+
+    funds.push(fund);
+
+    saveData();
+
+    document.getElementById("fundAmount").value="";
+    document.getElementById("fundNote").value="";
+
+    document.getElementById("fundMessage").style.display="block";
+
+    setTimeout(()=>{
+        document.getElementById("fundMessage").style.display="none";
+    },2500);
+
+    render();
+}
+
+
+function deleteMember(id){
+
+    if(!confirm("کیا آپ یہ ممبر حذف کرنا چاہتے ہیں؟")) return;
+
+    members = members.filter(m=>m.id!==id);
+
+    funds = funds.filter(f=>f.memberId!==id);
+
+    saveData();
+
+    render();
+}
+
+
+function deleteFund(id){
+
+    if(!confirm("کیا آپ یہ فنڈ انٹری حذف کرنا چاہتے ہیں؟")) return;
+
+    funds = funds.filter(f=>f.id!==id);
+
+    saveData();
+
+    render();
+}
+
+
+function memberTotal(id){
+
+    return funds
+        .filter(f=>f.memberId===id)
+        .reduce((sum,f)=>sum + Number(f.amount),0);
+
+}
+
+
+function showID(id){
+
+    let m = members.find(x=>x.id===id);
+
+    if(!m) return;
+
+    document.getElementById("idCard").style.display="block";
+
+    document.getElementById("cardId").textContent=m.id;
+    document.getElementById("cardName").textContent=m.name;
+    document.getElementById("cardCity").textContent="سٹی: " + (m.city || "-");
+    document.getElementById("cardPak").textContent=m.pak || "-";
+    document.getElementById("cardSaudi").textContent=m.saudi || "-";
+    document.getElementById("cardFund").textContent=memberTotal(m.id).toLocaleString();
+
+    document.getElementById("idCard").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+
+function printCard(){
+
+    let card = document.getElementById("idCard").innerHTML;
+
+    let win = window.open("","","width=600,height=700");
+
+    win.document.write(`
+        <html dir="rtl">
+        <head>
+        <title>خوشاب فاؤنڈیشن ID Card</title>
+        <style>
+        body{
+            font-family:Tahoma,Arial;
+            text-align:center;
+            padding:40px;
+        }
+        #card{
+            border:3px solid #063b38;
+            border-radius:18px;
+            padding:30px;
+            max-width:400px;
+            margin:auto;
+        }
+        button{display:none}
+        </style>
+        </head>
+        <body>
+        <div id="card">${card}</div>
+        </body>
+        </html>
+    `);
+
+    win.document.close();
+    win.print();
+}
+
+
+function render(){
+
+    let memberTable=document.getElementById("memberTable");
+    let fundTable=document.getElementById("fundTable");
+    let fundMember=document.getElementById("fundMember");
+
+    memberTable.innerHTML="";
+    fundTable.innerHTML="";
+    fundMember.innerHTML='<option value="">ممبر منتخب کریں</option>';
+
+    members.forEach(m=>{
+
+        let tr=document.createElement("tr");
+
+        tr.innerHTML=`
+            <td>${m.id}</td>
+            <td>${m.name}</td>
+            <td>${m.city || "-"}</td>
+            <td>${m.pak || "-"}</td>
+            <td>${m.saudi || "-"}</td>
+            <td>${memberTotal(m.id).toLocaleString()}</td>
+            <td>
+                <button class="idbtn" onclick="showID('${m.id}')">ID</button>
+                <button class="delete" onclick="deleteMember('${m.id}')">حذف</button>
+            </td>
+        `;
+
+        memberTable.appendChild(tr);
+
+        let option=document.createElement("option");
+
+        option.value=m.id;
+        option.textContent=m.id+" — "+m.name;
+
+        fundMember.appendChild(option);
+
+    });
+
+
+    funds.forEach(f=>{
+
+        let m=members.find(x=>x.id===f.memberId);
+
+        let tr=document.createElement("tr");
+
+        tr.innerHTML=`
+            <td>${f.date}</td>
+            <td>${m ? m.name : "ممبر حذف شدہ"}</td>
+            <td>${f.month}</td>
+            <td>${Number(f.amount).toLocaleString()}</td>
+            <td>${f.note || "-"}</td>
+            <td>
+                <button class="delete" onclick="deleteFund(${f.id})">حذف</button>
+            </td>
+        `;
+
+        fundTable.appendChild(tr);
+
+    });
+
+
+    let totalFund=funds.reduce((sum,f)=>sum+Number(f.amount),0);
+
+    let currentMonth=new Date().getMonth();
+
+    let monthNames=[
+        "جنوری","فروری","مارچ","اپریل","مئی","جون",
+        "جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر"
+    ];
+
+    let monthly=funds
+        .filter(f=>f.month===monthNames[currentMonth])
+        .reduce((sum,f)=>sum+Number(f.amount),0);
+
+    document.getElementById("totalMembers").textContent=members.length;
+
+    document.getElementById("totalFund").textContent=totalFund.toLocaleString();
+
+    document.getElementById("monthlyFund").textContent=monthly.toLocaleString();
+
+    document.getElementById("totalEntries").textContent=funds.length;
+}
+
+
+document.getElementById("fundDate").value=
+    new Date().toISOString().split("T")[0];
+
+render();
+
+</script>
+
+</body>
+</html>
     margin:0;
     font-family:Tahoma,Arial,sans-serif;
     background:#f3f6f8;
