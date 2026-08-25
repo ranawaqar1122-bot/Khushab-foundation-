@@ -4,1773 +4,1612 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>خوشاب فاؤنڈیشن — Admin Panel</title>
+<title>خوشاب فاؤنڈیشن - Admin Panel</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-    margin:0;
-    font-family:Tahoma,Arial,sans-serif;
-    background:#eef7f5;
-    color:#17332f;
+*{
+  box-sizing:border-box;
 }
 
-button,input,select,textarea{
-    font-family:inherit;
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#eef7f5;
+  color:#17332f;
+}
+
+button,input,select{
+  font:inherit;
 }
 
 button{
-    cursor:pointer;
-    border:0;
-}
-
-.login-page{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:linear-gradient(135deg,#004d40,#00796b,#009688);
-}
-
-.login-box{
-    width:100%;
-    max-width:450px;
-    background:#fff;
-    padding:35px;
-    border-radius:28px;
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
-    text-align:center;
-}
-
-.logo{
-    font-size:65px;
-    margin-bottom:10px;
-}
-
-.login-box h1{
-    color:#00695c;
-    margin:5px 0 10px;
-}
-
-.muted{
-    color:#718096;
-}
-
-.field{
-    text-align:right;
-    margin:18px 0;
-}
-
-.field label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.field input,
-.field select,
-.field textarea{
-    width:100%;
-    padding:13px;
-    border:1px solid #ccd6d3;
-    border-radius:12px;
-    font-size:16px;
-    outline:none;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-    border-color:#00897b;
-    box-shadow:0 0 0 3px rgba(0,137,123,.12);
-}
-
-.login-btn{
-    width:100%;
-    padding:15px;
-    border-radius:12px;
-    background:#00695c;
-    color:#fff;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.error{
-    color:#c62828;
-    margin-top:15px;
-    font-weight:bold;
+  cursor:pointer;
 }
 
 .hidden{
-    display:none!important;
+  display:none !important;
+}
+
+/* LOGIN */
+
+.login-page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:linear-gradient(135deg,#003c35,#00695c,#008577);
+}
+
+.login-box{
+  width:100%;
+  max-width:470px;
+  background:white;
+  padding:35px 28px;
+  border-radius:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  text-align:center;
+}
+
+.logo{
+  font-size:60px;
+}
+
+.login-box h1{
+  color:#00695c;
+  margin:10px 0;
+  font-size:32px;
+}
+
+.muted{
+  color:#71808a;
+}
+
+.field{
+  margin:18px 0;
+  text-align:right;
+}
+
+.field label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.field input,
+.field select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccd8d6;
+  border-radius:14px;
+  outline:none;
+  background:white;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:#008577;
+  box-shadow:0 0 0 3px rgba(0,133,119,.12);
+}
+
+.btn{
+  padding:12px 18px;
+  border:0;
+  border-radius:12px;
+  background:#00695c;
+  color:white;
+  font-weight:bold;
+}
+
+.btn:hover{
+  opacity:.9;
+}
+
+.btn.danger{
+  background:#b42318;
+}
+
+.btn.secondary{
+  background:#e7f1ef;
+  color:#00695c;
+}
+
+.btn.small{
+  padding:7px 11px;
+  font-size:13px;
+}
+
+.error{
+  color:#c62828;
+  font-weight:bold;
+  min-height:25px;
+  margin-top:10px;
+}
+
+/* APP */
+
+.app{
+  min-height:100vh;
 }
 
 .topbar{
-    background:#00695c;
-    color:#fff;
-    padding:15px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
+  background:#00695c;
+  color:white;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 .topbar h2{
-    margin:0;
+  margin:0;
 }
 
-.logout{
-    background:#d32f2f;
-    color:#fff;
-    padding:10px 16px;
-    border-radius:10px;
-    font-weight:bold;
+.top-actions{
+  display:flex;
+  gap:8px;
 }
 
-.container{
-    max-width:1250px;
-    margin:auto;
-    padding:20px;
+.top-actions .btn{
+  background:white;
+  color:#00695c;
 }
 
-.nav{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
-}
-
-.nav button{
-    background:#fff;
-    color:#00695c;
-    border:1px solid #b2dfdb;
-    padding:11px 15px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.nav button.active{
-    background:#00695c;
-    color:#fff;
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
 }
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
-    margin-bottom:20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:20px;
 }
 
 .card{
-    background:#fff;
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 4px 18px rgba(0,0,0,.08);
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);
 }
 
-.stat{
-    font-size:30px;
-    font-weight:bold;
-    color:#00695c;
-    margin-top:8px;
+.card .number{
+  font-size:28px;
+  font-weight:bold;
+  color:#00695c;
+  margin-top:5px;
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  margin-bottom:18px;
+}
+
+.nav button{
+  border:0;
+  padding:11px 16px;
+  border-radius:12px;
+  background:white;
+  color:#00695c;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.nav button.active{
+  background:#00695c;
+  color:white;
 }
 
 .panel{
-    background:#fff;
-    padding:22px;
-    border-radius:18px;
-    box-shadow:0 4px 18px rgba(0,0,0,.08);
-    margin-bottom:20px;
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);
+  margin-bottom:18px;
 }
 
-.panel h2{
-    margin-top:0;
-    color:#00695c;
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:12px;
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
 }
 
 .actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-top:15px;
-}
-
-.primary{
-    background:#00695c;
-    color:#fff;
-    padding:11px 17px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.secondary{
-    background:#e0f2f1;
-    color:#00695c;
-    padding:11px 17px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-.danger{
-    background:#c62828;
-    color:#fff;
-    padding:8px 12px;
-    border-radius:8px;
-}
-
-.table-wrap{
-    overflow-x:auto;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:700px;
+  width:100%;
+  border-collapse:collapse;
+  margin-top:18px;
 }
 
 th,td{
-    border-bottom:1px solid #e5e7eb;
-    padding:11px 8px;
-    text-align:right;
+  padding:11px 8px;
+  border-bottom:1px solid #e5ecea;
+  text-align:right;
 }
 
 th{
-    background:#e0f2f1;
-    color:#00695c;
-}
-
-.badge{
-    display:inline-block;
-    padding:4px 9px;
-    border-radius:20px;
-    background:#e0f2f1;
-    color:#00695c;
-    font-size:13px;
+  background:#f4f8f7;
 }
 
 .empty{
-    text-align:center;
-    padding:30px;
-    color:#777;
+  text-align:center;
+  color:#71808a;
+  padding:25px;
 }
 
-.id-card{
-    max-width:430px;
-    margin:20px auto;
-    border:2px solid #00695c;
-    border-radius:20px;
-    overflow:hidden;
-    background:#fff;
-    box-shadow:0 5px 20px rgba(0,0,0,.15);
+.notice{
+  background:#fff8e1;
+  border:1px solid #f0d98c;
+  padding:13px;
+  border-radius:12px;
+  color:#6d5200;
+  line-height:1.8;
 }
 
-.id-head{
-    background:#00695c;
-    color:#fff;
-    padding:18px;
-    text-align:center;
+.idcard{
+  max-width:430px;
+  margin:20px auto;
+  padding:25px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#00695c,#003c35);
+  color:white;
+  text-align:center;
 }
 
-.id-head .logo{
-    font-size:40px;
+.idcard .card-logo{
+  font-size:45px;
 }
 
-.id-body{
-    padding:20px;
+.idcard h3{
+  font-size:28px;
+  margin:8px;
 }
 
-.id-row{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
+.idcard .amount{
+  font-size:32px;
+  font-weight:bold;
+  margin:15px 0;
 }
 
-.id-total{
-    font-size:24px;
-    font-weight:bold;
-    color:#00695c;
-    text-align:center;
-    padding:15px;
+@media(max-width:800px){
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .grid2,
+  .grid3{
+    grid-template-columns:1fr;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 }
 
-footer{
-    text-align:center;
-    color:#718096;
-    padding:30px;
-}
+@media(max-width:520px){
 
-@media(max-width:600px){
-    .container{padding:12px}
-    .login-box{padding:25px 18px}
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .wrap{
+    padding:12px;
+  }
+
+  .login-box{
+    padding:25px 18px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- LOGIN PAGE -->
+
 <section id="loginPage" class="login-page">
-    <div class="login-box">
-        <div class="logo">🕌</div>
-        <h1>خوشاب فاؤنڈیشن</h1>
-        <p class="muted">محفوظ ایڈمن پینل</p>
 
-        <div class="field">
-            <label>ایڈمن یوزرنیم</label>
-            <input
-                id="loginUser"
-                type="text"
-                autocomplete="username"
-                placeholder="Username"
-            >
-        </div>
+<div class="login-box">
 
-        <div class="field">
-            <label>پاسورڈ</label>
-            <input
-                id="loginPass"
-                type="password"
-                autocomplete="current-password"
-                placeholder="Password"
-            >
-        </div>
+<div class="logo">🕌</div>
 
-        <button class="login-btn" onclick="login()">
-            🔐 لاگ اِن کریں
-        </button>
+<h1>خوشاب فاؤنڈیشن</h1>
 
-        <div id="loginError" class="error"></div>
-    </div>
-</section>
+<p class="muted">محفوظ ایڈمن پینل</p>
 
+<div class="field">
 
-<!-- ADMIN -->
-<section id="adminPage" class="hidden">
+<label>یوزرنیم</label>
 
-<header class="topbar">
-    <h2>خوشاب فاؤنڈیشن — Admin Panel</h2>
-    <button class="logout" onclick="logout()">Logout</button>
-</header>
-
-<div class="container">
-
-    <div class="nav">
-        <button class="active" onclick="showPage('dashboard',this)">🏠 ڈیش بورڈ</button>
-        <button onclick="showPage('members',this)">👥 ممبرز</button>
-        <button onclick="showPage('funds',this)">💰 فنڈز</button>
-        <button onclick="showPage('payments',this)">💳 Payments</button>
-        <button onclick="showPage('idcard',this)">🪪 ID Card</button>
-        <button onclick="showPage('backup',this)">💾 Backup</button>
-    </div>
-
-
-    <!-- DASHBOARD -->
-    <section id="dashboard" class="page">
-
-        <div class="cards">
-
-            <div class="card">
-                <div>کل ممبرز</div>
-                <div class="stat" id="totalMembers">0</div>
-            </div>
-
-            <div class="card">
-                <div>کل فنڈز</div>
-                <div class="stat" id="totalFunds">0</div>
-            </div>
-
-            <div class="card">
-                <div>کل Payments</div>
-                <div class="stat" id="totalPayments">0</div>
-            </div>
-
-            <div class="card">
-                <div>کل جمع رقم</div>
-                <div class="stat" id="totalAmount">0</div>
-            </div>
-
-        </div>
-
-        <div class="panel">
-            <h2>خوشاب فاؤنڈیشن</h2>
-            <p>
-                یہاں سے Members، Funds، Payments اور ID Cards کا مکمل انتظام کریں۔
-            </p>
-        </div>
-
-        <div class="panel">
-            <h2>حالیہ Payments</h2>
-            <div id="recentPayments"></div>
-        </div>
-
-    </section>
-
-
-    <!-- MEMBERS -->
-    <section id="members" class="page hidden">
-
-        <div class="panel">
-            <h2>نیا ممبر شامل کریں</h2>
-
-            <div class="grid">
-
-                <div class="field">
-                    <label>نام</label>
-                    <input id="mName" placeholder="ممبر کا نام">
-                </div>
-
-                <div class="field">
-                    <label>تاریخ پیدائش / تاریخ</label>
-                    <input id="mDate" type="date">
-                </div>
-
-                <div class="field">
-                    <label>پتہ</label>
-                    <input id="mAddress" placeholder="مکمل پتہ">
-                </div>
-
-                <div class="field">
-                    <label>شہر</label>
-                    <input id="mCity" placeholder="شہر">
-                </div>
-
-                <div class="field">
-                    <label>سعودی نمبر</label>
-                    <input id="mSaudi" placeholder="+966...">
-                </div>
-
-                <div class="field">
-                    <label>پاکستانی نمبر</label>
-                    <input id="mPakistan" placeholder="+92...">
-                </div>
-
-            </div>
-
-            <button class="primary" onclick="addMember()">
-                ➕ ممبر محفوظ کریں
-            </button>
-        </div>
-
-
-        <div class="panel">
-            <h2>Members List</h2>
-
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>نام</th>
-                        <th>شہر</th>
-                        <th>سعودی نمبر</th>
-                        <th>پاکستانی نمبر</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="membersTable"></tbody>
-                </table>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- FUNDS -->
-    <section id="funds" class="page hidden">
-
-        <div class="panel">
-            <h2>نیا Fund شامل کریں</h2>
-
-            <div class="grid">
-
-                <div class="field">
-                    <label>Fund Name</label>
-                    <input id="fName" placeholder="مثلاً ماہانہ فنڈ">
-                </div>
-
-                <div class="field">
-                    <label>رقم</label>
-                    <input id="fAmount" type="number" min="0" placeholder="0">
-                </div>
-
-                <div class="field">
-                    <label>مہینہ</label>
-                    <input id="fMonth" type="month">
-                </div>
-
-            </div>
-
-            <button class="primary" onclick="addFund()">
-                ➕ Fund محفوظ کریں
-            </button>
-        </div>
-
-
-        <div class="panel">
-            <h2>Funds List</h2>
-
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Fund</th>
-                        <th>رقم</th>
-                        <th>مہینہ</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="fundsTable"></tbody>
-                </table>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- PAYMENTS -->
-    <section id="payments" class="page hidden">
-
-        <div class="panel">
-
-            <h2>نئی Payment شامل کریں</h2>
-
-            <div class="grid">
-
-                <div class="field">
-                    <label>Member</label>
-                    <select id="pMember"></select>
-                </div>
-
-                <div class="field">
-                    <label>Fund</label>
-                    <select id="pFund"></select>
-                </div>
-
-                <div class="field">
-                    <label>Payment رقم</label>
-                    <input id="pAmount" type="number" min="0" placeholder="0">
-                </div>
-
-                <div class="field">
-                    <label>تاریخ</label>
-                    <input id="pDate" type="date">
-                </div>
-
-                <div class="field">
-                    <label>نوٹ</label>
-                    <input id="pNote" placeholder="مثلاً Cash / Bank">
-                </div>
-
-            </div>
-
-            <button class="primary" onclick="addPayment()">
-                💳 Payment محفوظ کریں
-            </button>
-
-        </div>
-
-
-        <div class="panel">
-
-            <h2>Payments History</h2>
-
-            <div class="table-wrap">
-                <table>
-
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Member</th>
-                        <th>Fund</th>
-                        <th>رقم</th>
-                        <th>تاریخ</th>
-                        <th>نوٹ</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="paymentsTable"></tbody>
-
-                </table>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ID CARD -->
-    <section id="idcard" class="page hidden">
-
-        <div class="panel">
-
-            <h2>Member ID Card بنائیں</h2>
-
-            <div class="field">
-                <label>Member منتخب کریں</label>
-                <select id="cardMember" onchange="renderCard()"></select>
-            </div>
-
-        </div>
-
-        <div id="cardArea"></div>
-
-    </section>
-
-
-    <!-- BACKUP -->
-    <section id="backup" class="page hidden">
-
-        <div class="panel">
-
-            <h2>Data Backup</h2>
-
-            <p>
-                اپنے Members، Funds اور Payments کا backup اپنے موبائل/کمپیوٹر میں محفوظ کریں۔
-            </p>
-
-            <div class="actions">
-
-                <button class="primary" onclick="downloadBackup()">
-                    ⬇️ Backup Download
-                </button>
-
-                <label class="secondary">
-                    ⬆️ Backup Import
-                    <input
-                        type="file"
-                        id="backupFile"
-                        accept=".json"
-                        onchange="importBackup(event)"
-                        hidden
-                    >
-                </label>
-
-                <button class="danger" onclick="clearAllData()">
-                    🗑️ تمام Data Delete
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+<input
+id="username"
+type="text"
+autocomplete="username"
+placeholder="یوزرنیم"
+>
 
 </div>
 
-<footer>
-    خوشاب فاؤنڈیشن © <span id="year"></span>
-</footer>
+<div class="field">
+
+<label>پاسورڈ</label>
+
+<input
+id="password"
+type="password"
+autocomplete="current-password"
+minlength="6"
+maxlength="64"
+placeholder="پاسورڈ"
+>
+
+</div>
+
+<button
+id="loginBtn"
+class="btn"
+style="width:100%;font-size:18px"
+>
+🔐 لاگ اِن کریں
+</button>
+
+<div id="loginError" class="error"></div>
+
+<p class="muted">
+یوزرنیم: <b>khushabadmin</b><br>
+پاسورڈ: <b>KHF@2026</b>
+</p>
+
+</div>
+</section>
+
+
+<!-- ADMIN APP -->
+
+<section id="app" class="app hidden">
+
+<header class="topbar">
+
+<h2>🕌 خوشاب فاؤنڈیشن — Admin Panel</h2>
+
+<div class="top-actions">
+
+<button id="exportBtn" class="btn">
+ڈیٹا Export
+</button>
+
+<button id="logoutBtn" class="btn">
+Logout
+</button>
+
+</div>
+
+</header>
+
+
+<main class="wrap">
+
+<!-- DASHBOARD -->
+
+<div class="cards">
+
+<div class="card">
+<div class="muted">افراد</div>
+<div id="countMembers" class="number">0</div>
+</div>
+
+<div class="card">
+<div class="muted">Funds</div>
+<div id="countFunds" class="number">0</div>
+</div>
+
+<div class="card">
+<div class="muted">Payments</div>
+<div id="countPayments" class="number">0</div>
+</div>
+
+<div class="card">
+<div class="muted">کل رقم</div>
+<div id="totalAmount" class="number">0</div>
+</div>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<nav class="nav">
+
+<button class="tab active" data-tab="members">
+افراد
+</button>
+
+<button class="tab" data-tab="funds">
+Funds
+</button>
+
+<button class="tab" data-tab="payments">
+Payments
+</button>
+
+<button class="tab" data-tab="idcard">
+ID Card
+</button>
+
+</nav>
+
+
+<!-- MEMBERS -->
+
+<section id="members" class="tabPanel panel">
+
+<h2>افراد شامل کریں</h2>
+
+<div class="grid3">
+
+<div class="field">
+<label>نام</label>
+<input id="mName" placeholder="نام">
+</div>
+
+<div class="field">
+<label>پتہ</label>
+<input id="mAddress" placeholder="پتہ">
+</div>
+
+<div class="field">
+<label>شہر</label>
+<input id="mCity" placeholder="شہر">
+</div>
+
+<div class="field">
+<label>سعودی نمبر</label>
+<input id="mSaudi" placeholder="+966...">
+</div>
+
+<div class="field">
+<label>پاکستانی نمبر</label>
+<input id="mPakistan" placeholder="+92...">
+</div>
+
+</div>
+
+<div class="actions">
+
+<button id="addMember" class="btn">
+فرد شامل کریں
+</button>
+
+</div>
+
+<div id="membersTable"></div>
+
+</section>
+
+
+<!-- FUNDS -->
+
+<section id="funds" class="tabPanel panel hidden">
+
+<h2>Funds</h2>
+
+<div class="grid2">
+
+<div class="field">
+
+<label>Fund کا نام</label>
+
+<input
+id="fundName"
+placeholder="مثلاً ماہانہ فنڈ"
+>
+
+</div>
+
+<div class="field">
+
+<label>تفصیل</label>
+
+<input
+id="fundNote"
+placeholder="تفصیل"
+>
+
+</div>
+
+</div>
+
+<button id="addFund" class="btn">
+Fund شامل کریں
+</button>
+
+<div id="fundsTable"></div>
+
+</section>
+
+
+<!-- PAYMENTS -->
+
+<section id="payments" class="tabPanel panel hidden">
+
+<h2>Payment شامل کریں</h2>
+
+<div class="grid3">
+
+<div class="field">
+
+<label>فرد</label>
+
+<select id="pMember"></select>
+
+</div>
+
+<div class="field">
+
+<label>Fund</label>
+
+<select id="pFund"></select>
+
+</div>
+
+<div class="field">
+
+<label>رقم</label>
+
+<input
+id="pAmount"
+type="number"
+min="0"
+step="0.01"
+placeholder="0"
+>
+
+</div>
+
+<div class="field">
+
+<label>تاریخ</label>
+
+<input
+id="pDate"
+type="date"
+>
+
+</div>
+
+<div class="field">
+
+<label>مہینہ</label>
+
+<input
+id="pMonth"
+placeholder="مثلاً اگست 2026"
+>
+
+</div>
+
+</div>
+
+<button id="addPayment" class="btn">
+Payment محفوظ کریں
+</button>
+
+<div id="paymentsTable"></div>
+
+</section>
+
+
+<!-- ID CARD -->
+
+<section id="idcard" class="tabPanel panel hidden">
+
+<h2>Member ID Card</h2>
+
+<div class="field">
+
+<label>فرد منتخب کریں</label>
+
+<select id="cardMember"></select>
+
+</div>
+
+<button id="makeCard" class="btn">
+ID Card بنائیں
+</button>
+
+<div id="cardOutput"></div>
+
+</section>
+
+
+<div class="notice">
+
+<b>اہم:</b>
+یہ GitHub Pages پر چلنے والا client-side نظام ہے۔
+یہ login عام استعمال کے لیے ہے، لیکن GitHub Pages پر حقیقی
+server-side authentication/database نہیں ہوتا۔
+
+</div>
+
+</main>
 
 </section>
 
 
 <script>
 
-/* =====================================================
-   LOGIN SETTINGS
-   ===================================================== */
+/* LOGIN HASHES */
 
-const ADMIN_USERNAME = "khushabadmin";
-const ADMIN_PASSWORD = "KHF@2026";
+const USER_HASH =
+"d3d7de22a8a83e35dc8ad2ac6ef317bcc7853e99b6ca78bc39486748d2c0b877";
+
+const PASS_HASH =
+"7e74084c91fe574769868c6b83d6c04a50d6000adb152473cfe62cce677508e9";
 
 
-/* =====================================================
-   STORAGE
-   ===================================================== */
+/* DATABASE */
 
-const STORAGE_KEY = "khushab_foundation_v1";
+const STORAGE_KEY =
+"khushab_foundation_data_v2";
 
-let data = JSON.parse(
-    localStorage.getItem(STORAGE_KEY) ||
-    '{"members":[],"funds":[],"payments":[]}'
+let db =
+JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+||
+'{"members":[],"funds":[],"payments":[]}'
 );
 
 
-/* =====================================================
-   SAVE
-   ===================================================== */
+/* SHORTCUT */
 
-function saveData(){
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-    );
-
-    refreshAll();
-}
+const $ = id =>
+document.getElementById(id);
 
 
-/* =====================================================
-   LOGIN
-   ===================================================== */
+/* SAVE */
 
-function login(){
+function save(){
 
-    const user =
-        document.getElementById("loginUser").value.trim();
-
-    const pass =
-        document.getElementById("loginPass").value;
-
-    if(
-        user === ADMIN_USERNAME &&
-        pass === ADMIN_PASSWORD
-    ){
-
-        sessionStorage.setItem(
-            "khushab_admin_login",
-            "yes"
-        );
-
-        document
-            .getElementById("loginPage")
-            .classList.add("hidden");
-
-        document
-            .getElementById("adminPage")
-            .classList.remove("hidden");
-
-        refreshAll();
-
-    }else{
-
-        document
-            .getElementById("loginError")
-            .textContent =
-            "یوزرنیم یا پاسورڈ غلط ہے۔";
-
-    }
-}
-
-
-/* ENTER KEY LOGIN */
-
-document.addEventListener(
-    "keydown",
-    function(e){
-
-        if(
-            e.key === "Enter" &&
-            !document
-                .getElementById("loginPage")
-                .classList
-                .contains("hidden")
-        ){
-            login();
-        }
-
-    }
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(db)
 );
 
-
-/* =====================================================
-   LOGOUT
-   ===================================================== */
-
-function logout(){
-
-    sessionStorage.removeItem(
-        "khushab_admin_login"
-    );
-
-    location.reload();
-}
-
-
-/* =====================================================
-   PAGE NAVIGATION
-   ===================================================== */
-
-function showPage(page,button){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(
-            p => p.classList.add("hidden")
-        );
-
-    document
-        .getElementById(page)
-        .classList.remove("hidden");
-
-    document
-        .querySelectorAll(".nav button")
-        .forEach(
-            b => b.classList.remove("active")
-        );
-
-    if(button){
-        button.classList.add("active");
-    }
-
-    refreshAll();
-}
-
-
-/* =====================================================
-   ID GENERATOR
-   ===================================================== */
-
-function makeId(prefix){
-
-    return prefix +
-        Date.now().toString(36) +
-        Math.random()
-            .toString(36)
-            .substring(2,6);
+refresh();
 
 }
 
 
-/* =====================================================
-   MEMBERS
-   ===================================================== */
+/* ID */
 
-function addMember(){
+function uid(prefix){
 
-    const name =
-        document.getElementById("mName")
-            .value.trim();
-
-    if(!name){
-        alert("ممبر کا نام لازمی ہے۔");
-        return;
-    }
-
-    const member = {
-
-        id: makeId("M-"),
-
-        name: name,
-
-        date:
-            document.getElementById("mDate").value,
-
-        address:
-            document.getElementById("mAddress")
-                .value.trim(),
-
-        city:
-            document.getElementById("mCity")
-                .value.trim(),
-
-        saudi:
-            document.getElementById("mSaudi")
-                .value.trim(),
-
-        pakistan:
-            document.getElementById("mPakistan")
-                .value.trim(),
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-    data.members.push(member);
-
-    saveData();
-
-    clearMemberForm();
-
-    alert("ممبر کامیابی سے محفوظ ہوگیا۔");
-}
-
-
-function clearMemberForm(){
-
-    [
-        "mName",
-        "mDate",
-        "mAddress",
-        "mCity",
-        "mSaudi",
-        "mPakistan"
-    ].forEach(
-        id => document.getElementById(id).value = ""
-    );
+return prefix +
+"_" +
+Date.now() +
+"_" +
+Math.random()
+.toString(36)
+.slice(2,7);
 
 }
 
 
-function deleteMember(id){
+/* SHA256 */
 
-    if(
-        !confirm(
-            "کیا آپ یہ ممبر Delete کرنا چاہتے ہیں؟"
-        )
-    ) return;
+async function sha256(text){
 
-    data.members =
-        data.members.filter(
-            m => m.id !== id
-        );
+const buffer =
+await crypto.subtle.digest(
+"SHA-256",
+new TextEncoder().encode(text)
+);
 
-    data.payments =
-        data.payments.filter(
-            p => p.memberId !== id
-        );
-
-    saveData();
-}
-
-
-function renderMembers(){
-
-    const tbody =
-        document.getElementById("membersTable");
-
-    if(!data.members.length){
-
-        tbody.innerHTML =
-            '<tr><td colspan="6" class="empty">ابھی کوئی ممبر موجود نہیں</td></tr>';
-
-        return;
-    }
-
-    tbody.innerHTML =
-        data.members.map(
-            m => `
-            <tr>
-                <td>${escapeHTML(m.id)}</td>
-                <td><b>${escapeHTML(m.name)}</b></td>
-                <td>${escapeHTML(m.city || "-")}</td>
-                <td>${escapeHTML(m.saudi || "-")}</td>
-                <td>${escapeHTML(m.pakistan || "-")}</td>
-                <td>
-                    <button
-                        class="danger"
-                        onclick="deleteMember('${m.id}')"
-                    >
-                        Delete
-                    </button>
-                </td>
-            </tr>
-            `
-        ).join("");
+return [...new Uint8Array(buffer)]
+.map(
+b => b.toString(16).padStart(2,"0")
+)
+.join("");
 
 }
 
 
-/* =====================================================
-   FUNDS
-   ===================================================== */
+/* MONEY */
 
-function addFund(){
+function money(n){
 
-    const name =
-        document.getElementById("fName")
-            .value.trim();
-
-    const amount =
-        Number(
-            document.getElementById("fAmount").value
-        );
-
-    if(!name){
-
-        alert("Fund کا نام لازمی ہے۔");
-        return;
-
-    }
-
-    const fund = {
-
-        id: makeId("F-"),
-
-        name: name,
-
-        amount:
-            amount || 0,
-
-        month:
-            document.getElementById("fMonth").value,
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-    data.funds.push(fund);
-
-    saveData();
-
-    document.getElementById("fName").value = "";
-    document.getElementById("fAmount").value = "";
-    document.getElementById("fMonth").value = "";
-
-    alert("Fund محفوظ ہوگیا۔");
+return Number(n || 0)
+.toLocaleString(
+"en-US",
+{
+maximumFractionDigits:2
 }
-
-
-function deleteFund(id){
-
-    if(
-        !confirm(
-            "کیا آپ یہ Fund Delete کرنا چاہتے ہیں؟"
-        )
-    ) return;
-
-    data.funds =
-        data.funds.filter(
-            f => f.id !== id
-        );
-
-    saveData();
-}
-
-
-function renderFunds(){
-
-    const tbody =
-        document.getElementById("fundsTable");
-
-    if(!data.funds.length){
-
-        tbody.innerHTML =
-            '<tr><td colspan="5" class="empty">ابھی کوئی Fund موجود نہیں</td></tr>';
-
-        return;
-    }
-
-    tbody.innerHTML =
-        data.funds.map(
-            f => `
-            <tr>
-                <td>${escapeHTML(f.id)}</td>
-                <td><b>${escapeHTML(f.name)}</b></td>
-                <td>${money(f.amount)}</td>
-                <td>${escapeHTML(f.month || "-")}</td>
-                <td>
-                    <button
-                        class="danger"
-                        onclick="deleteFund('${f.id}')"
-                    >
-                        Delete
-                    </button>
-                </td>
-            </tr>
-            `
-        ).join("");
+);
 
 }
 
 
-/* =====================================================
-   PAYMENTS
-   ===================================================== */
+/* ESCAPE */
 
-function addPayment(){
+function esc(value){
 
-    const memberId =
-        document.getElementById("pMember").value;
+return String(value ?? "")
+.replace(
+/[&<>"']/g,
+function(m){
 
-    const fundId =
-        document.getElementById("pFund").value;
+return {
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[m];
 
-    const amount =
-        Number(
-            document.getElementById("pAmount").value
-        );
-
-    const date =
-        document.getElementById("pDate").value ||
-        new Date().toISOString().slice(0,10);
-
-    if(!memberId){
-
-        alert("Member منتخب کریں۔");
-        return;
-
-    }
-
-    if(!fundId){
-
-        alert("Fund منتخب کریں۔");
-        return;
-
-    }
-
-    if(amount <= 0){
-
-        alert("Payment رقم درج کریں۔");
-        return;
-
-    }
-
-    data.payments.push({
-
-        id: makeId("P-"),
-
-        memberId: memberId,
-
-        fundId: fundId,
-
-        amount: amount,
-
-        date: date,
-
-        note:
-            document.getElementById("pNote")
-                .value.trim(),
-
-        createdAt:
-            new Date().toISOString()
-
-    });
-
-    saveData();
-
-    document.getElementById("pAmount").value = "";
-    document.getElementById("pNote").value = "";
-
-    alert("Payment محفوظ ہوگئی۔");
 }
-
-
-function deletePayment(id){
-
-    if(
-        !confirm(
-            "کیا آپ یہ Payment Delete کرنا چاہتے ہیں؟"
-        )
-    ) return;
-
-    data.payments =
-        data.payments.filter(
-            p => p.id !== id
-        );
-
-    saveData();
-}
-
-
-function renderPayments(){
-
-    const tbody =
-        document.getElementById("paymentsTable");
-
-    if(!data.payments.length){
-
-        tbody.innerHTML =
-            '<tr><td colspan="7" class="empty">ابھی کوئی Payment موجود نہیں</td></tr>';
-
-        return;
-
-    }
-
-    tbody.innerHTML =
-        data.payments.map(
-            p => {
-
-                const member =
-                    data.members.find(
-                        m => m.id === p.memberId
-                    );
-
-                const fund =
-                    data.funds.find(
-                        f => f.id === p.fundId
-                    );
-
-                return `
-                <tr>
-
-                    <td>${escapeHTML(p.id)}</td>
-
-                    <td>
-                        ${escapeHTML(
-                            member ? member.name : "Unknown"
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHTML(
-                            fund ? fund.name : "Unknown"
-                        )}
-                    </td>
-
-                    <td>
-                        <b>${money(p.amount)}</b>
-                    </td>
-
-                    <td>${escapeHTML(p.date || "-")}</td>
-
-                    <td>${escapeHTML(p.note || "-")}</td>
-
-                    <td>
-                        <button
-                            class="danger"
-                            onclick="deletePayment('${p.id}')"
-                        >
-                            Delete
-                        </button>
-                    </td>
-
-                </tr>
-                `;
-
-            }
-        ).join("");
+);
 
 }
 
 
-/* =====================================================
-   DROPDOWNS
-   ===================================================== */
+/* LOGIN */
 
-function refreshDropdowns(){
+$("loginBtn").onclick =
+async function(){
 
-    const memberOptions =
-        '<option value="">Member منتخب کریں</option>' +
+const username =
+$("username").value.trim();
 
-        data.members.map(
-            m =>
-            `<option value="${m.id}">
-                ${escapeHTML(m.name)}
-            </option>`
-        ).join("");
+const password =
+$("password").value;
 
-    document.getElementById("pMember").innerHTML =
-        memberOptions;
+const userHash =
+await sha256(username);
 
-    document.getElementById("cardMember").innerHTML =
-        memberOptions;
-
-
-    const fundOptions =
-        '<option value="">Fund منتخب کریں</option>' +
-
-        data.funds.map(
-            f =>
-            `<option value="${f.id}">
-                ${escapeHTML(f.name)}
-            </option>`
-        ).join("");
-
-    document.getElementById("pFund").innerHTML =
-        fundOptions;
-
-}
-
-
-/* =====================================================
-   ID CARD
-   ===================================================== */
-
-function renderCard(){
-
-    const id =
-        document.getElementById("cardMember").value;
-
-    const area =
-        document.getElementById("cardArea");
-
-    if(!id){
-
-        area.innerHTML = "";
-        return;
-
-    }
-
-    const member =
-        data.members.find(
-            m => m.id === id
-        );
-
-    if(!member){
-
-        area.innerHTML = "";
-        return;
-
-    }
-
-    const total =
-        data.payments
-            .filter(
-                p => p.memberId === id
-            )
-            .reduce(
-                (sum,p) => sum + Number(p.amount || 0),
-                0
-            );
-
-    area.innerHTML = `
-
-        <div class="id-card" id="printCard">
-
-            <div class="id-head">
-
-                <div class="logo">🕌</div>
-
-                <h2>خوشاب فاؤنڈیشن</h2>
-
-                <div>MEMBER ID CARD</div>
-
-            </div>
-
-            <div class="id-body">
-
-                <div class="id-row">
-                    <b>Member ID</b>
-                    <span>${escapeHTML(member.id)}</span>
-                </div>
-
-                <div class="id-row">
-                    <b>نام</b>
-                    <span>${escapeHTML(member.name)}</span>
-                </div>
-
-                <div class="id-row">
-                    <b>شہر</b>
-                    <span>${escapeHTML(member.city || "-")}</span>
-                </div>
-
-                <div class="id-row">
-                    <b>پتہ</b>
-                    <span>${escapeHTML(member.address || "-")}</span>
-                </div>
-
-                <div class="id-row">
-                    <b>Saudi نمبر</b>
-                    <span>${escapeHTML(member.saudi || "-")}</span>
-                </div>
-
-                <div class="id-row">
-                    <b>Pakistan نمبر</b>
-                    <span>${escapeHTML(member.pakistan || "-")}</span>
-                </div>
-
-                <div class="id-total">
-                    کل جمع شدہ رقم<br>
-                    ${money(total)}
-                </div>
-
-            </div>
-
-        </div>
-
-        <div style="text-align:center">
-            <button
-                class="primary"
-                onclick="printCard()"
-            >
-                🖨️ ID Card Print کریں
-            </button>
-        </div>
-    `;
-
-}
-
-
-function printCard(){
-
-    const card =
-        document.getElementById("printCard");
-
-    if(!card) return;
-
-    const win =
-        window.open(
-            "",
-            "_blank",
-            "width=600,height=800"
-        );
-
-    win.document.write(`
-
-        <!DOCTYPE html>
-
-        <html lang="ur" dir="rtl">
-
-        <head>
-
-        <meta charset="UTF-8">
-
-        <title>Khushab Foundation ID Card</title>
-
-        <style>
-
-        body{
-            font-family:Tahoma,Arial,sans-serif;
-            padding:30px;
-        }
-
-        .id-card{
-            max-width:430px;
-            margin:auto;
-            border:2px solid #00695c;
-            border-radius:20px;
-            overflow:hidden;
-        }
-
-        .id-head{
-            background:#00695c;
-            color:white;
-            padding:18px;
-            text-align:center;
-        }
-
-        .logo{
-            font-size:45px;
-        }
-
-        .id-body{
-            padding:20px;
-        }
-
-        .id-row{
-            display:flex;
-            justify-content:space-between;
-            padding:10px 0;
-            border-bottom:1px solid #ddd;
-        }
-
-        .id-total{
-            text-align:center;
-            font-size:22px;
-            font-weight:bold;
-            padding:15px;
-        }
-
-        </style>
-
-        </head>
-
-        <body>
-
-        ${card.outerHTML}
-
-        <script>
-        window.onload=function(){
-            window.print();
-        }
-        <\/script>
-
-        </body>
-
-        </html>
-
-    `);
-
-    win.document.close();
-
-}
-
-
-/* =====================================================
-   DASHBOARD
-   ===================================================== */
-
-function refreshDashboard(){
-
-    document.getElementById("totalMembers")
-        .textContent =
-        data.members.length;
-
-    document.getElementById("totalFunds")
-        .textContent =
-        data.funds.length;
-
-    document.getElementById("totalPayments")
-        .textContent =
-        data.payments.length;
-
-    const total =
-        data.payments.reduce(
-            (sum,p) =>
-                sum + Number(p.amount || 0),
-            0
-        );
-
-    document.getElementById("totalAmount")
-        .textContent =
-        money(total);
-
-
-    const recent =
-        [...data.payments]
-            .reverse()
-            .slice(0,5);
-
-    const area =
-        document.getElementById("recentPayments");
-
-    if(!recent.length){
-
-        area.innerHTML =
-            '<div class="empty">ابھی کوئی Payment نہیں</div>';
-
-        return;
-
-    }
-
-    area.innerHTML =
-        recent.map(
-            p => {
-
-                const m =
-                    data.members.find(
-                        x => x.id === p.memberId
-                    );
-
-                return `
-                    <div class="card" style="margin-bottom:10px">
-
-                        <b>
-                            ${escapeHTML(
-                                m ? m.name : "Unknown"
-                            )}
-                        </b>
-
-                        <span class="badge">
-                            ${money(p.amount)}
-                        </span>
-
-                        <div class="muted">
-                            ${escapeHTML(p.date || "")}
-                        </div>
-
-                    </div>
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-/* =====================================================
-   BACKUP
-   ===================================================== */
-
-function downloadBackup(){
-
-    const backup = {
-
-        app:
-            "Khushab Foundation",
-
-        exportedAt:
-            new Date().toISOString(),
-
-        data:
-            data
-
-    };
-
-    const blob =
-        new Blob(
-            [
-                JSON.stringify(
-                    backup,
-                    null,
-                    2
-                )
-            ],
-            {
-                type:"application/json"
-            }
-        );
-
-    const url =
-        URL.createObjectURL(blob);
-
-    const a =
-        document.createElement("a");
-
-    a.href = url;
-
-    a.download =
-        "khushab-foundation-backup.json";
-
-    a.click();
-
-    URL.revokeObjectURL(url);
-
-}
-
-
-function importBackup(event){
-
-    const file =
-        event.target.files[0];
-
-    if(!file) return;
-
-    const reader =
-        new FileReader();
-
-    reader.onload =
-        function(){
-
-            try{
-
-                const imported =
-                    JSON.parse(
-                        reader.result
-                    );
-
-                if(
-                    !imported.data ||
-                    !Array.isArray(imported.data.members) ||
-                    !Array.isArray(imported.data.funds) ||
-                    !Array.isArray(imported.data.payments)
-                ){
-
-                    alert(
-                        "Backup file درست نہیں ہے۔"
-                    );
-
-                    return;
-                }
-
-                if(
-                    !confirm(
-                        "موجودہ Data replace ہوگا۔ کیا آپ جاری رکھنا چاہتے ہیں؟"
-                    )
-                ) return;
-
-                data =
-                    imported.data;
-
-                saveData();
-
-                alert(
-                    "Backup کامیابی سے Import ہوگیا۔"
-                );
-
-            }catch(e){
-
-                alert(
-                    "Backup file پڑھنے میں مسئلہ آیا۔"
-                );
-
-            }
-
-        };
-
-    reader.readAsText(file);
-
-}
-
-
-function clearAllData(){
-
-    const confirmText =
-        prompt(
-            'تمام Data Delete کرنے کے لیے "DELETE" لکھیں:'
-        );
-
-    if(confirmText !== "DELETE"){
-
-        alert("Data محفوظ ہے۔");
-        return;
-
-    }
-
-    data = {
-
-        members:[],
-        funds:[],
-        payments:[]
-
-    };
-
-    saveData();
-
-    alert("تمام Data Delete ہوگیا۔");
-}
-
-
-/* =====================================================
-   HELPERS
-   ===================================================== */
-
-function money(amount){
-
-    return (
-        Number(amount || 0)
-            .toLocaleString("en-US")
-        + " PKR"
-    );
-
-}
-
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* =====================================================
-   REFRESH ALL
-   ===================================================== */
-
-function refreshAll(){
-
-    renderMembers();
-
-    renderFunds();
-
-    renderPayments();
-
-    refreshDropdowns();
-
-    refreshDashboard();
-
-}
-
-
-/* =====================================================
-   START
-   ===================================================== */
-
-document.getElementById("year")
-    .textContent =
-    new Date().getFullYear();
-
+const passHash =
+await sha256(password);
 
 if(
-    sessionStorage.getItem(
-        "khushab_admin_login"
-    ) === "yes"
+userHash === USER_HASH &&
+passHash === PASS_HASH
 ){
 
-    document
-        .getElementById("loginPage")
-        .classList.add("hidden");
+sessionStorage.setItem(
+"khushab_admin_login",
+"yes"
+);
 
-    document
-        .getElementById("adminPage")
-        .classList.remove("hidden");
+$("loginPage")
+.classList
+.add("hidden");
 
-    refreshAll();
+$("app")
+.classList
+.remove("hidden");
+
+$("loginError").textContent="";
+
+refresh();
+
+}else{
+
+$("loginError").textContent =
+"یوزرنیم یا پاسورڈ غلط ہے";
 
 }
+
+};
+
+
+/* ENTER LOGIN */
+
+$("password").addEventListener(
+"keydown",
+function(e){
+
+if(e.key === "Enter"){
+
+$("loginBtn").click();
+
+}
+
+}
+);
+
+
+/* LOGOUT */
+
+$("logoutBtn").onclick =
+function(){
+
+sessionStorage.removeItem(
+"khushab_admin_login"
+);
+
+$("app")
+.classList
+.add("hidden");
+
+$("loginPage")
+.classList
+.remove("hidden");
+
+$("password").value="";
+
+};
+
+
+/* TABS */
+
+document
+.querySelectorAll(".tab")
+.forEach(
+function(button){
+
+button.onclick =
+function(){
+
+document
+.querySelectorAll(".tab")
+.forEach(
+x =>
+x.classList.remove("active")
+);
+
+document
+.querySelectorAll(".tabPanel")
+.forEach(
+x =>
+x.classList.add("hidden")
+);
+
+button
+.classList
+.add("active");
+
+$(
+button.dataset.tab
+)
+.classList
+.remove("hidden");
+
+};
+
+}
+);
+
+
+/* ADD MEMBER */
+
+$("addMember").onclick =
+function(){
+
+const name =
+$("mName").value.trim();
+
+if(!name){
+
+alert("نام ضرور لکھیں");
+
+return;
+
+}
+
+db.members.push({
+
+id:uid("m"),
+
+name:name,
+
+address:
+$("mAddress").value.trim(),
+
+city:
+$("mCity").value.trim(),
+
+saudi:
+$("mSaudi").value.trim(),
+
+pakistan:
+$("mPakistan").value.trim()
+
+});
+
+$("mName").value="";
+$("mAddress").value="";
+$("mCity").value="";
+$("mSaudi").value="";
+$("mPakistan").value="";
+
+save();
+
+};
+
+
+/* ADD FUND */
+
+$("addFund").onclick =
+function(){
+
+const name =
+$("fundName").value.trim();
+
+if(!name){
+
+alert("Fund کا نام ضرور لکھیں");
+
+return;
+
+}
+
+db.funds.push({
+
+id:uid("f"),
+
+name:name,
+
+note:
+$("fundNote").value.trim()
+
+});
+
+$("fundName").value="";
+$("fundNote").value="";
+
+save();
+
+};
+
+
+/* ADD PAYMENT */
+
+$("addPayment").onclick =
+function(){
+
+const memberId =
+$("pMember").value;
+
+const fundId =
+$("pFund").value;
+
+const amount =
+Number($("pAmount").value);
+
+if(
+!memberId ||
+!fundId ||
+!(amount > 0)
+){
+
+alert(
+"فرد، Fund اور صحیح رقم منتخب کریں"
+);
+
+return;
+
+}
+
+db.payments.push({
+
+id:uid("p"),
+
+memberId:memberId,
+
+fundId:fundId,
+
+amount:amount,
+
+date:
+$("pDate").value ||
+new Date()
+.toISOString()
+.slice(0,10),
+
+month:
+$("pMonth").value.trim()
+
+});
+
+$("pAmount").value="";
+$("pMonth").value="";
+
+save();
+
+};
+
+
+/* REFRESH */
+
+function refresh(){
+
+$("countMembers").textContent =
+db.members.length;
+
+$("countFunds").textContent =
+db.funds.length;
+
+$("countPayments").textContent =
+db.payments.length;
+
+const total =
+db.payments.reduce(
+function(sum,p){
+
+return sum +
+Number(p.amount || 0);
+
+},
+0
+);
+
+$("totalAmount").textContent =
+money(total);
+
+
+/* MEMBERS TABLE */
+
+if(db.members.length){
+
+$("membersTable").innerHTML = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>نام</th>
+<th>شہر</th>
+<th>سعودی نمبر</th>
+<th>پاکستانی نمبر</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+db.members.map(
+function(m){
+
+return `
+
+<tr>
+
+<td>${esc(m.name)}</td>
+
+<td>${esc(m.city)}</td>
+
+<td>${esc(m.saudi)}</td>
+
+<td>${esc(m.pakistan)}</td>
+
+<td>
+
+<button
+class="btn danger small"
+onclick="deleteMember('${m.id}')"
+>
+حذف
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}
+).join("")
+}
+
+</tbody>
+
+</table>
+
+`;
+
+}else{
+
+$("membersTable").innerHTML =
+'<div class="empty">ابھی کوئی فرد شامل نہیں</div>';
+
+}
+
+
+/* FUNDS TABLE */
+
+if(db.funds.length){
+
+$("fundsTable").innerHTML = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Fund</th>
+<th>تفصیل</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+db.funds.map(
+function(f){
+
+return `
+
+<tr>
+
+<td>${esc(f.name)}</td>
+
+<td>${esc(f.note)}</td>
+
+<td>
+
+<button
+class="btn danger small"
+onclick="deleteFund('${f.id}')"
+>
+حذف
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}
+).join("")
+}
+
+</tbody>
+
+</table>
+
+`;
+
+}else{
+
+$("fundsTable").innerHTML =
+'<div class="empty">ابھی کوئی Fund نہیں</div>';
+
+}
+
+
+/* PAYMENTS */
+
+const memberNames =
+Object.fromEntries(
+db.members.map(
+m => [m.id,m.name]
+)
+);
+
+const fundNames =
+Object.fromEntries(
+db.funds.map(
+f => [f.id,f.name]
+)
+);
+
+if(db.payments.length){
+
+$("paymentsTable").innerHTML = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>فرد</th>
+<th>Fund</th>
+<th>رقم</th>
+<th>تاریخ</th>
+<th>مہینہ</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+db.payments.map(
+function(p){
+
+return `
+
+<tr>
+
+<td>
+${esc(memberNames[p.memberId] || "—")}
+</td>
+
+<td>
+${esc(fundNames[p.fundId] || "—")}
+</td>
+
+<td>
+${money(p.amount)}
+</td>
+
+<td>
+${esc(p.date)}
+</td>
+
+<td>
+${esc(p.month)}
+</td>
+
+<td>
+
+<button
+class="btn danger small"
+onclick="deletePayment('${p.id}')"
+>
+حذف
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}
+).join("")
+}
+
+</tbody>
+
+</table>
+
+`;
+
+}else{
+
+$("paymentsTable").innerHTML =
+'<div class="empty">ابھی کوئی Payment نہیں</div>';
+
+}
+
+
+/* SELECT MEMBERS */
+
+$("pMember").innerHTML =
+'<option value="">فرد منتخب کریں</option>' +
+
+db.members
+.map(
+function(m){
+
+return `
+<option value="${m.id}">
+${esc(m.name)}
+</option>
+`;
+
+}
+)
+.join("");
+
+
+/* SELECT FUNDS */
+
+$("pFund").innerHTML =
+'<option value="">Fund منتخب کریں</option>' +
+
+db.funds
+.map(
+function(f){
+
+return `
+<option value="${f.id}">
+${esc(f.name)}
+</option>
+`;
+
+}
+)
+.join("");
+
+
+/* CARD MEMBERS */
+
+$("cardMember").innerHTML =
+'<option value="">فرد منتخب کریں</option>' +
+
+db.members
+.map(
+function(m){
+
+return `
+<option value="${m.id}">
+${esc(m.name)}
+</option>
+`;
+
+}
+)
+.join("");
+
+}
+
+
+/* DELETE MEMBER */
+
+window.deleteMember =
+function(id){
+
+if(
+confirm(
+"اس فرد کو حذف کرنا ہے؟"
+)
+){
+
+db.members =
+db.members.filter(
+x => x.id !== id
+);
+
+db.payments =
+db.payments.filter(
+x => x.memberId !== id
+);
+
+save();
+
+}
+
+};
+
+
+/* DELETE FUND */
+
+window.deleteFund =
+function(id){
+
+if(
+confirm(
+"اس Fund کو حذف کرنا ہے؟"
+)
+){
+
+db.funds =
+db.funds.filter(
+x => x.id !== id
+);
+
+db.payments =
+db.payments.filter(
+x => x.fundId !== id
+);
+
+save();
+
+}
+
+};
+
+
+/* DELETE PAYMENT */
+
+window.deletePayment =
+function(id){
+
+if(
+confirm(
+"یہ Payment حذف کرنا ہے؟"
+)
+){
+
+db.payments =
+db.payments.filter(
+x => x.id !== id
+);
+
+save();
+
+}
+
+};
+
+
+/* ID CARD */
+
+$("makeCard").onclick =
+function(){
+
+const id =
+$("cardMember").value;
+
+if(!id){
+
+alert("فرد منتخب کریں");
+
+return;
+
+}
+
+const member =
+db.members.find(
+x => x.id === id
+);
+
+const total =
+db.payments
+.filter(
+p => p.memberId === id
+)
+.reduce(
+(sum,p) =>
+sum + Number(p.amount || 0),
+0
+);
+
+$("cardOutput").innerHTML = `
+
+<div class="idcard">
+
+<div class="card-logo">
+🕌
+</div>
+
+<div>
+خوشاب فاؤنڈیشن
+</div>
+
+<h3>
+${esc(member.name)}
+</h3>
+
+<div>
+${esc(member.city || "")}
+</div>
+
+<div class="amount">
+${money(total)}
+</div>
+
+<div>
+کل جمع شدہ فنڈ
+</div>
+
+<hr
+style="
+border:0;
+border-top:1px solid rgba(255,255,255,.3);
+margin:18px 0;
+">
+
+<div>
+Member ID:
+${esc(member.id)}
+</div>
+
+<div>
+${esc(member.saudi || "")}
+</div>
+
+<div>
+${esc(member.pakistan || "")}
+</div>
+
+</div>
+
+`;
+
+};
+
+
+/* EXPORT DATA */
+
+$("exportBtn").onclick =
+function(){
+
+const blob =
+new Blob(
+[
+JSON.stringify(
+db,
+null,
+2
+)
+],
+{
+type:"application/json"
+}
+);
+
+const link =
+document.createElement("a");
+
+link.href =
+URL.createObjectURL(blob);
+
+link.download =
+"khushab-foundation-backup.json";
+
+link.click();
+
+setTimeout(
+function(){
+
+URL.revokeObjectURL(
+link.href
+);
+
+},
+1000
+);
+
+};
+
+
+/* AUTO LOGIN */
+
+if(
+sessionStorage.getItem(
+"khushab_admin_login"
+) === "yes"
+){
+
+$("loginPage")
+.classList
+.add("hidden");
+
+$("app")
+.classList
+.remove("hidden");
+
+}
+
+
+/* TODAY */
+
+$("pDate").value =
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+/* START */
+
+refresh();
 
 </script>
 
